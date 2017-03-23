@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ManageInfo">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAgAAAAAACAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\hotelmanage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fio">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAYAAAAAAAQAAQAAAAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>code\labfile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInfo">
+    <Position X="7" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAABAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>code\hoteluser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CmdUI">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgABAAAACAAAAAAAAAgAAAEAAAAAIAAAAAAAEA=</HashCode>
+      <FileName>code\hotelUI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Hotel">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAgACAAAAAAEAAAAAAAAAAABAAE=</HashCode>
+      <FileName>code\chotel.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Room">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAACAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>code\chotel.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Order">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>code\chotel.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
