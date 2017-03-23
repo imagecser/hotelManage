@@ -24,6 +24,18 @@
     <ClCompile Include="code\labfile.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="code\hotelmanage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="code\hoteluser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="code\hotelplc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="code\signiu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\chotel.h">
@@ -38,12 +50,17 @@
     <ClInclude Include="code\hoteluser.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="code\hotelUI.h">
+    <ClInclude Include="code\hotelplc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="code\signiu.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
 </Project>

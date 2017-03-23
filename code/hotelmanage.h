@@ -4,8 +4,8 @@
 
 class ManageInfo {
 public:
-	vector<vector<Room>> & addInfo();
-	vector<vector<Room>> & ediInfo();
-	vector<vector<Room>> & delInfo();
+	ManageInfo & addInfo();
+	ManageInfo & ediInfo();
+	ManageInfo & delInfo();
 	ManageInfo & msave(fio f) { f.fsave(); return *this; }
 };

@@ -33,8 +33,9 @@ struct Room {
 	Hotel photel;
 };
 
-struct Order :public Room {
+struct Order {
 	int orderR;
+	string uname;
 	int date[6];
 	Room proom;
 };

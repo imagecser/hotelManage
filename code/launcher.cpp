@@ -5,8 +5,9 @@
 #include "labfile.h"
 
 int main() {
-	fio iofile;
+	/*fio iofile;
 	iofile.finput();
-	iofile.fsave();
+	iofile.fsave();*/
+	vector<int> v(10);
 	return 0;
 }

@@ -20,19 +20,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\chotel.cpp" />
+    <ClCompile Include="code\hotelmanage.cpp" />
+    <ClCompile Include="code\hotelplc.cpp" />
+    <ClCompile Include="code\hoteluser.cpp" />
     <ClCompile Include="code\labfile.cpp" />
     <ClCompile Include="code\launcher.cpp" />
+    <ClCompile Include="code\signiu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\chotel.h" />
     <ClInclude Include="code\hotelmanage.h" />
-    <ClInclude Include="code\hotelUI.h" />
+    <ClInclude Include="code\hotelplc.h" />
     <ClInclude Include="code\hoteluser.h" />
     <ClInclude Include="code\labfile.h" />
+    <ClInclude Include="code\signiu.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1015B20D-0577-4EE6-838C-B7252D5196F0}</ProjectGuid>
