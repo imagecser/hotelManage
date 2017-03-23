@@ -14,7 +14,7 @@ fstream & fio::finput() {
 		vector<Room> *pvecr = new vector<Room>;
 		while (true) {
 			Room *r = new Room;
-			*r = *h;
+			r->photel = *h;
 			getline(ss, sIndex, ',');
 			if (sIndex.size() == 0) break; // 判断到头与否
 			ps << sIndex; ps >> r->numR; ps.clear(); // 将首个numR字符串转化为整型

@@ -26,11 +26,26 @@ struct Hotel {
 	string area;
 };
 
-struct Room :public Hotel {
+struct Room {
 	int numR;
 	int price;
 	string type;
-	Room & operator=(Hotel & h);
+	Hotel photel;
+};
+
+struct Order :public Room {
+	int orderR;
+	int date[6];
+	Room proom;
+};
+
+/*
+
+struct Room :public Hotel {
+int numR;
+int price;
+string type;
+Room & operator=(Hotel & h);
 };
 
 struct Order:public Room {
@@ -38,3 +53,4 @@ struct Order:public Room {
 	int date[6];
 	Order & operator=(Room & r);
 };
+*/

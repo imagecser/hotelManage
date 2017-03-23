@@ -9,5 +9,5 @@ public:
 	fio() :hotelLoc("hotel.txt"), orderLoc("order.txt") {}
 	fstream & finput();
 	fstream & fsave();
-};
 
+};

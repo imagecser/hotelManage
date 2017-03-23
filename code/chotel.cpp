@@ -9,6 +9,8 @@ vector<Hotel> vhotels;
 
 vector<Room> vorders;
 
+
+/*
 Room & Room::operator=(Hotel & h) {
 	indexH = h.indexH;
 	name = h.name;
@@ -29,3 +31,4 @@ Order & Order::operator=(Room & r) {
 	return *this;
 	// TODO: ¸³ÖµRoomµ½Order
 }
+*/
