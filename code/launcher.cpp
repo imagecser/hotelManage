@@ -8,6 +8,7 @@ int main() {
 	/*fio iofile;
 	iofile.finput();
 	iofile.fsave();*/
-	vector<int> v(10);
+	float i = 37.8;
+	printf_s("%4.1f", &i);
 	return 0;
 }

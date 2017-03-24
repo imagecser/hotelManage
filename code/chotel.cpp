@@ -9,6 +9,7 @@ vector<Hotel> vhotels;
 
 vector<Room> vorders;
 
+vector<Upsw> vpsws;
 
 /*
 Room & Room::operator=(Hotel & h) {

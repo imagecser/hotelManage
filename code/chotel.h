@@ -40,6 +40,11 @@ struct Order {
 	Room proom;
 };
 
+struct Upsw {
+	string username;
+	string password;
+};
+
 /*
 
 struct Room :public Hotel {
