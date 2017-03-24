@@ -17,7 +17,7 @@ struct Order;
 struct Hotel;
 extern vector<vector<Room>> vrooms;
 extern vector<Hotel> vhotels;
-extern vector<Room> vorders;
+extern vector<Order> vorders;
 
 struct Hotel {
 	int indexH;
@@ -30,14 +30,15 @@ struct Room {
 	int numR;
 	int price;
 	string type;
-	Hotel photel;
+	Hotel *photel;
 };
 
 struct Order {
-	int orderR;
+	int orderIndex;
 	string uname;
 	int date[6];
-	Room proom;
+	Room *proom;
+	string idcard;
 };
 
 struct Upsw {

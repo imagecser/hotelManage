@@ -7,7 +7,7 @@ vector<vector<Room>> vrooms;
 
 vector<Hotel> vhotels;
 
-vector<Room> vorders;
+vector<Order> vorders;
 
 vector<Upsw> vpsws;
 

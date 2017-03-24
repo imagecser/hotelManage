@@ -5,10 +5,10 @@
 #include "labfile.h"
 
 int main() {
-	/*fio iofile;
+	fio iofile;
 	iofile.finput();
-	iofile.fsave();*/
-	float i = 37.8;
-	printf_s("%4.1f", &i);
+	iofile.fsave();
+	iofile.odinput();
+	iofile.odsave();
 	return 0;
 }
