@@ -26,6 +26,9 @@
     <ClCompile Include="code\labfile.cpp" />
     <ClCompile Include="code\launcher.cpp" />
     <ClCompile Include="code\signiu.cpp" />
+    <ClCompile Include="ctripui\loginui.cpp" />
+    <ClCompile Include="ctripui\main.cpp" />
+    <ClCompile Include="ctripui\mainwindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\chotel.h" />
@@ -34,9 +37,17 @@
     <ClInclude Include="code\hoteluser.h" />
     <ClInclude Include="code\labfile.h" />
     <ClInclude Include="code\signiu.h" />
+    <ClInclude Include="code\ui_loginui.h" />
+    <ClInclude Include="code\ui_mainwindow.h" />
+    <ClInclude Include="ctripui\loginui.h" />
+    <ClInclude Include="ctripui\mainwindow.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ctripui\ctripui.pro" />
+    <None Include="ctripui\ctripui.pro.user" />
+    <None Include="ctripui\loginui.ui" />
+    <None Include="ctripui\mainwindow.ui" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1015B20D-0577-4EE6-838C-B7252D5196F0}</ProjectGuid>
@@ -92,6 +103,7 @@
     <OutDir>.\code\</OutDir>
     <IntDir>.\mid\</IntDir>
     <TargetName>code\</TargetName>
+    <IncludePath>C:\Qt\Qt5.7.1\5.7\msvc2015_64\include\QtWidgets;C:\Qt\Qt5.7.1\5.7\msvc2015_64\include\QtGui;C:\Qt\Qt5.7.1\5.7\msvc2015_64\include\QtCore;C:\Qt\Qt5.7.1\5.7\msvc2015_64\include;C:\Qt\Qt5.7.1\5.7\msvc2015_64\bin;C:\Qt\Qt5.7.1\5.7\msvc2015_64;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,6 +111,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Qt\Qt5.7.1\5.7\msvc2015_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -1,10 +1,10 @@
-#ifndef CHOTEL
+﻿#ifndef CHOTEL
 #include "chotel.h"
 #define CHOTEL
 #endif // !CHOTEL
 #include "labfile.h"
 
-int main() {
+/*int main() {
 	fio iofile;
 	iofile.finput();
 	iofile.fsave();
@@ -12,3 +12,5 @@ int main() {
 	iofile.odsave();
 	return 0;
 }
+
+*/

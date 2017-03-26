@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "chotel.h"
 
 class PoliceInfo {

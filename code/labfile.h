@@ -1,5 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "chotel.h"
+#include <cstdlib>
 
 class fio {
 	string hotelLoc;
@@ -14,4 +15,17 @@ public:
 	fstream & odsave();
 	fstream & pswinput();
 	fstream & pswsave();
+};
+
+
+struct lessHotel{
+    bool operator()(const Hotel &a, const Hotel &b){
+        return a.indexH < b.indexH;
+    }
+};
+
+struct lessRoom{
+    bool operator()(const vector<Room> &a, const vector<Room> &b){
+        return a[0].photel->indexH < b[0].photel->indexH;
+    }
 };

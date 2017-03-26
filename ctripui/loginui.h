@@ -1,7 +1,7 @@
 #ifndef LOGINUI_H
 #define LOGINUI_H
 
-#include <QDialog>
+#include <QtWidgets\qdialog.h>
 
 namespace Ui {
 class loginui;
@@ -14,6 +14,9 @@ class loginui : public QDialog
 public:
     explicit loginui(QWidget *parent = 0);
     ~loginui();
+
+private slots:
+    void on_loginBtn_clicked();
 
 private:
     Ui::loginui *ui;

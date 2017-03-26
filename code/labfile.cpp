@@ -1,43 +1,48 @@
-#include "labfile.h"
+ï»¿#include "labfile.h"
+#include <algorithm>
 
 fstream & fio::finput() {
 	stringstream ss, ps;
 	f.open(hotelLoc, ios::in);
-	while (f) {
-		Hotel *h = new Hotel;
+	while (true) {
 		string line, sIndex;
 		getline(f, line); 
 		if (line.size() == 0) break;
-		ss << line; // ½«Ò»ĞĞÊäÈëssÁ÷ÖĞ
-		getline(ss, sIndex, ','); 
-		ps << sIndex; 
-		ps >> h->indexH; 
-		ps.clear(); // ½«Ê×¸öindex×Ö·û´®×ª»¯ÎªÕûĞÍ
+		Hotel *h = new Hotel;
+		ss << line; // å°†ä¸€è¡Œè¾“å…¥ssæµä¸­
+        getline(ss, sIndex, ',');
+        h->indexH = atoi(sIndex.c_str());
+		ps.clear(); // å°†é¦–ä¸ªindexå­—ç¬¦ä¸²è½¬åŒ–ä¸ºæ•´å‹
 		getline(ss, h->name, ','); 
 		getline(ss, h->city, ','); 
-		getline(ss, h->area, '|'); // Ìî³ähotelÊµÀıµÄÊôĞÔ
+		getline(ss, h->area, '|'); // å¡«å……hotelå®ä¾‹çš„å±æ€§
 		vector<Room> *pvecr = new vector<Room>;
+        Room *pr = new Room;
+        pr->photel = h;
+        pvecr->push_back(*pr);
 		while (true) {
 			Room *r = new Room;
 			r->photel = h;
 			getline(ss, sIndex, ',');
-			if (sIndex.size() == 0) break; // ÅĞ¶Ïµ½Í·Óë·ñ
-			ps << sIndex; 
-			ps >> r->numR; ps.clear(); // ½«Ê×¸önumR×Ö·û´®×ª»¯ÎªÕûĞÍ
-			getline(ss, sIndex, ','); 
-			ps << sIndex; 
-			ps >> r->price; 
-			ps.clear(); // ½«Ê×¸öprice×Ö·û´®×ª»¯ÎªÕûĞÍ
-			getline(ss, r->type, '|'); // Ìî³äroomÊµÀıµÄÊôĞÔ
-			pvecr->push_back(*r);
+			if (sIndex.size() == 0) break; // åˆ¤æ–­åˆ°å¤´ä¸å¦
+			ps << sIndex;
+			ps >> r->numR; ps.clear(); // å°†é¦–ä¸ªnumRå­—ç¬¦ä¸²è½¬åŒ–ä¸ºæ•´å‹
+			getline(ss, sIndex, ',');
+			ps << sIndex;
+			ps >> r->price;
+			ps.clear(); // å°†é¦–ä¸ªpriceå­—ç¬¦ä¸²è½¬åŒ–ä¸ºæ•´å‹
+			getline(ss, r->type, '|'); // å¡«å……roomå®ä¾‹çš„å±æ€§
+            pvecr->push_back(*r);
 		}
 		ss.clear();
 		vrooms.push_back(*pvecr);
-		vhotels.push_back(*h);
-	}
-	f.close();
+        vhotels.push_back(*h);
+        sort(vhotels.begin(), vhotels.end(), lessHotel());
+        sort(vrooms.begin(), vrooms.end(), lessRoom());
+    }
+    f.close();
 	return f;
-	// TODO: ´ÓhotelLoc¶ÁÈëµ½Êı¾İ½á¹¹
+	// TODO: ä»hotelLocè¯»å…¥åˆ°æ•°æ®ç»“æ„
 }
 
 fstream & fio::fsave() {
@@ -45,13 +50,13 @@ fstream & fio::fsave() {
 	for (unsigned int i = 0; i < vhotels.size(); ++i) {
 		f << setfill('0') << setw(4) << vhotels[i].indexH;
 		f << ',' << vhotels[i].name << ',' << vhotels[i].city << ',' << vhotels[i].area << '|';
-		for (unsigned int j = 0; j < vrooms[i].size(); ++j) 
+        for (unsigned int j = 1; j < vrooms[i].size(); ++j)
 			f << vrooms[i][j].numR << ',' << vrooms[i][j].price << ',' << vrooms[i][j].type << '|';
 		f << endl;
 	}
 	f.close();
 	return f;
-	// ´æ´¢Êı¾İ½á¹¹µ½hotelLoc
+	// å­˜å‚¨æ•°æ®ç»“æ„åˆ°hotelLoc
 }
 
 fstream & fio::odinput() {
@@ -66,19 +71,13 @@ fstream & fio::odinput() {
 		getline(ss, sIndex, '|');
 		ps << sIndex; ps >> od->orderIndex; ps.clear();
 		int indexag, numarg;
-		string namearg, cityarg, areaarg;
 		getline(ss, sIndex, ',');
 		ps << sIndex; ps >> indexag; ps.clear();
-		getline(ss, namearg, ',');
-		getline(ss, cityarg, ',');
-		getline(ss, areaarg, ',');
 		getline(ss, sIndex, '|');
 		ps << sIndex; ps >> numarg; ps.clear();
 		for (auto &outitem:vrooms)
 			for (auto &initem : outitem) {
-				if (indexag == initem.photel->indexH && namearg == initem.photel->name &&
-					cityarg == initem.photel->city && areaarg == initem.photel->area && 
-					numarg == initem.numR) {
+				if (indexag == initem.photel->indexH && numarg == initem.numR) {
 					od->proom = &initem;
 					break;
 				}
@@ -93,7 +92,7 @@ fstream & fio::odinput() {
 		vorders.push_back(*od);
 	}
 	f.close();
-	// TODO: µ¼Èëorder.txtÎÄ¼ş
+	// TODO: å¯¼å…¥order.txtæ–‡ä»¶
 	return f;
 }
 
@@ -102,13 +101,13 @@ fstream & fio::odsave() {
 	cout << vorders.size();
 	for (auto item : vorders) {
 		f << setfill('0') << setw(6) << item.orderIndex;
-		f << '|' << setfill('0') << setw(4) <<item.proom->photel->indexH;
-		f << ',' << item.proom->photel->name << ',' << item.proom->photel->city << ',' << item.proom->photel->area << item.proom->numR << '|';
+		f << ',' << setfill('0') << setw(4) <<item.proom->photel->indexH;
+		f << ',' << item.proom->numR << '|';
 		for (int i = 0; i < 6; ++i) f << item.date[i] << '/';
 		f << item.uname << '|' << item.idcard << '|';
 		f << endl;
 	}
 	f.close();
 	return f;
-	// TODO: ´æ´¢vordersµ½order.txt
+	// TODO: å­˜å‚¨vordersåˆ°order.txt
 }

@@ -1,6 +1,6 @@
-#include "hoteluser.h"
+ï»¿#include "hoteluser.h"
 
 UserInfo & UserInfo::findInfo() {
 	return *this;
-	// TODO: ÔÚ´Ë´¦²åÈë return Óï¾ä
+	// TODO: åœ¨æ­¤å¤„æ’å…¥ return è¯­å¥
 }

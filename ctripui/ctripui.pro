@@ -24,8 +24,33 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
+        mainwindow.cpp \
+    loginui.cpp \
+    ../code/chotel.cpp \
+    ../code/hotelmanage.cpp \
+    ../code/hotelplc.cpp \
+    ../code/hoteluser.cpp \
+    ../code/labfile.cpp \
+    ../code/launcher.cpp \
+    ../code/signiu.cpp
+
+HEADERS  += mainwindow.h \
+    loginui.h \
+    ../code/chotel.h \
+    ../code/hotelmanage.h \
+    ../code/hotelplc.h \
+    ../code/hoteluser.h \
+    ../code/labfile.h \
+    ../code/signiu.h
+
+FORMS    += mainwindow.ui \
+    loginui.ui
+
+QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+TARGET = test
+TEMPLATE = app
+SOURCES += main.cpp\
         mainwindow.cpp
-
 HEADERS  += mainwindow.h
-
 FORMS    += mainwindow.ui

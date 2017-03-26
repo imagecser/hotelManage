@@ -36,6 +36,15 @@
     <ClCompile Include="code\signiu.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ctripui\loginui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ctripui\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ctripui\mainwindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\chotel.h">
@@ -56,8 +65,32 @@
     <ClInclude Include="code\signiu.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ctripui\loginui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ctripui\mainwindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ui_loginui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ui_mainwindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ctripui\loginui.ui">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="ctripui\mainwindow.ui">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="ctripui\ctripui.pro">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="ctripui\ctripui.pro.user">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

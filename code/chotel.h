@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef INFILE
 #include <iostream>
 #include <vector>

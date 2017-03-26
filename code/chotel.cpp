@@ -1,4 +1,4 @@
-#ifndef CHOTEL
+ï»¿#ifndef CHOTEL
 #include "chotel.h"
 #define CHOTEL
 #endif // !CHOTEL
@@ -18,7 +18,7 @@ Room & Room::operator=(Hotel & h) {
 	city = h.city;
 	area = h.area;
 	return *this;
-	// TODO: ¸³ÖµHotelµ½Room
+	// TODO: èµ‹å€¼Hotelåˆ°Room
 }
 
 Order & Order::operator=(Room & r) {
@@ -30,6 +30,6 @@ Order & Order::operator=(Room & r) {
 	price = r.price;
 	type = r.type;
 	return *this;
-	// TODO: ¸³ÖµRoomµ½Order
+	// TODO: èµ‹å€¼Roomåˆ°Order
 }
 */

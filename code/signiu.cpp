@@ -1,7 +1,7 @@
-#include "signiu.h"
+ï»¿#include "signiu.h"
 
-bool & Sign::identified(string username, string password) {
+bool Sign::identified(string username, string password) {
 	bool i = false;
 	return i;
-	// TODO: ÔÚ´Ë´¦²åÈë return Óï¾ä
+	// TODO: åœ¨æ­¤å¤„æ’å…¥ return è¯­å¥
 }
