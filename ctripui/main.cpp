@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "loginui.h"
 #include <QApplication>
 #include <iostream>
 #include "../code/chotel.h"
@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
     f.finput();
     f.odinput();
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    //w.show();
+    loginui l;
+    l.exec();
     return a.exec();
 }

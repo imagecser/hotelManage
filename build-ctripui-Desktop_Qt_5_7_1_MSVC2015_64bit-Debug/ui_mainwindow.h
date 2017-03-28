@@ -59,7 +59,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "admin", Q_NULLPTR));
         saveBtn->setText(QApplication::translate("MainWindow", "save", Q_NULLPTR));
         orderBtn->setText(QApplication::translate("MainWindow", "orders", Q_NULLPTR));
     } // retranslateUi

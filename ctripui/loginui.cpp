@@ -6,6 +6,7 @@ loginui::loginui(QWidget *parent) :
     ui(new Ui::loginui)
 {
     ui->setupUi(this);
+    connect(ui->adminTemp, SIGNAL(clicked()), this, SLOT(adminTemp()));
 }
 
 loginui::~loginui()
@@ -16,4 +17,10 @@ loginui::~loginui()
 void loginui::on_loginBtn_clicked()
 {
 
+}
+
+void loginui::adminTemp(){
+    this->close();
+    Mainn m;
+    m.exec();
 }

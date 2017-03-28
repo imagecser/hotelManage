@@ -107,5 +107,6 @@ void Roomui::showGrid(){
         for(int k = 0; k < 4; ++k) table->item(j - 1,k)->setTextAlignment(Qt::AlignCenter);
     }
     table->resizeColumnToContents(0);
+    for(int i = 0; i < table->rowCount(); ++i) table->item(i, 0)->setFlags(Qt::NoItemFlags);
     connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
 }

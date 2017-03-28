@@ -31,3 +31,9 @@ struct lessRoom{
         return a[0].photel->indexH < b[0].photel->indexH;
     }
 };
+
+struct lessOrder{
+    bool operator()(const Order &a, const Order &b){
+        return a.orderIndex < b.orderIndex;
+    }
+};

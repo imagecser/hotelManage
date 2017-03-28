@@ -1,44 +1,46 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINN_H
+#define MAINN_H
+
+#include <QDialog>
 
 #include "../code/chotel.h"
 #include "../code/labfile.h"
-#include <QtWidgets\qmainwindow.h>
-#include <ui_mainwindow.h>
+#include "ui_mainn.h"
 #include <QMessageBox>
 #include "../code/hotelmanage.h"
 #include <QtWidgets\qscrollbar.h>
 #include <QtCore\qfile.h>
+#include <QDialog>
 
 extern int i;
 namespace Ui {
-class MainWindow;
+class Mainn;
 }
 
-class MainWindow : public QMainWindow
+class Mainn : public QDialog
 {
     Q_OBJECT
 
 public:
     ManageInfo m;
-    explicit MainWindow(QWidget *parent = 0);
+    explicit Mainn(QWidget *parent = 0);
     void buildTable();
     void showGrid();
-    ~MainWindow();
+    ~Mainn();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::Mainn *ui;
 private slots:
     void getItemChanged(QTableWidgetItem *item);
     void ShowContextMenu(const QPoint& pos);
     void deleteRow();
     void addRow();
     void viewRooms();
+    void viewOrders();
     void save(){
         m.msave();
         QMessageBox::about(NULL, "saving...", "data saved!");
     }
 };
 
-#endif // MAINWINDOW_H
-
+#endif // MAINN_H

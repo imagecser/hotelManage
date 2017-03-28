@@ -1,10 +1,11 @@
-#include "mainwindow.h"
+#include "Mainn.h"
 #include "roomui.h"
-#include "ui_mainwindow.h"
+#include "orderui.h"
+#include "ui_Mainn.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+Mainn::Mainn(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Mainn)
 {
     setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
     //setFixedSize(this->width(), this->height());
@@ -15,12 +16,12 @@ MainWindow::MainWindow(QWidget *parent) :
     buildTable();
 }
 
-MainWindow::~MainWindow()
+Mainn::~Mainn()
 {
     delete ui;
 }
 
-void MainWindow::buildTable(){
+void Mainn::buildTable(){
     auto *table = ui->tableWidget;
     table->verticalHeader()->setVisible(false);
     table->horizontalHeader()->setHighlightSections(false);
@@ -49,9 +50,10 @@ void MainWindow::buildTable(){
     table->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(table, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ShowContextMenu(QPoint)));
     connect(ui->saveBtn, SIGNAL(clicked()), this, SLOT(save()));
+    connect(ui->orderBtn,SIGNAL(clicked()), this, SLOT(viewOrders()));
 }
 
-void MainWindow::getItemChanged(QTableWidgetItem *item){
+void Mainn::getItemChanged(QTableWidgetItem *item){
     int j = item->column();
     int i = item->row();
     string str = item->text().toStdString();
@@ -61,7 +63,7 @@ void MainWindow::getItemChanged(QTableWidgetItem *item){
     showGrid();
 }
 
-void MainWindow::showGrid(){
+void Mainn::showGrid(){
     disconnect(ui->tableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
     sort(vhotels.begin(), vhotels.end(), lessHotel());
     sort(vrooms.begin(), vrooms.end(), lessRoom());
@@ -85,7 +87,7 @@ void MainWindow::showGrid(){
     connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
 }
 
-void MainWindow::ShowContextMenu(const QPoint& pos){
+void Mainn::ShowContextMenu(const QPoint& pos){
     QPoint gloPos = ui->tableWidget->viewport()->mapToGlobal(pos);
     QMenu *myMenu = new QMenu;
     myMenu->addAction(QIcon(), QString("view"), this ,SLOT(viewRooms()));
@@ -94,14 +96,14 @@ void MainWindow::ShowContextMenu(const QPoint& pos){
     myMenu->exec(gloPos);
 }
 
-void MainWindow::deleteRow(){
+void Mainn::deleteRow(){
     int i = ui->tableWidget->currentRow();
     if(m.delHotel(i) == true)
         ui->tableWidget->removeRow(i);
     else QMessageBox::about(NULL, "error", "delete operation error!");
 }
 
-void MainWindow::addRow(){
+void Mainn::addRow(){
     ui->tableWidget->insertRow(ui->tableWidget->rowCount());
     m.addHotel();
     stringstream ss;
@@ -113,7 +115,7 @@ void MainWindow::addRow(){
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, m, new QTableWidgetItem(QString::fromStdString(s)));
 }
 
-void MainWindow::viewRooms(){
+void Mainn::viewRooms(){
     iRow = ui->tableWidget->currentRow();
     Roomui r;
     r.exec();
@@ -138,4 +140,9 @@ void MainWindow::viewRooms(){
         ss >> s;
         table->setItem(j - 1, 2,new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
     }*/
+}
+
+void Mainn::viewOrders(){
+    Orderui o;
+    o.exec();
 }

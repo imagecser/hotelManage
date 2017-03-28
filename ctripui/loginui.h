@@ -2,6 +2,7 @@
 #define LOGINUI_H
 
 #include <QtWidgets\qdialog.h>
+#include "mainn.h"
 
 namespace Ui {
 class loginui;
@@ -17,9 +18,11 @@ public:
 
 private slots:
     void on_loginBtn_clicked();
+    void adminTemp();
 
 private:
     Ui::loginui *ui;
+
 };
 
 #endif // LOGINUI_H
