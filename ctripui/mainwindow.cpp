@@ -1,7 +1,6 @@
 #include "mainwindow.h"
-#include <QtWidgets\qscrollbar.h>
-#include <QtCore\qfile.h>
-#include <../code/labfile.h>
+#include "roomui.h"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,6 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
     //setFixedSize(this->width(), this->height());
     ui->setupUi(this);
+    Roomui *r = new Roomui;
+    //connect(ui->indexEdit, SIGNAL(textChanged(QString)), this, );
+    //tconnect(ui->roomBtn, SIGNAL(pressed()), r, SLOT(changeBtn()));
     buildTable();
 }
 
@@ -44,25 +46,17 @@ void MainWindow::buildTable(){
                                               "QScrollBar::sub-line{background:transparent;}"
                                               "QScrollBar::add-line{background:transparent;}");
     showGrid();
+    table->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(table, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ShowContextMenu(QPoint)));
+    connect(ui->saveBtn, SIGNAL(clicked()), this, SLOT(save()));
 }
 
 void MainWindow::getItemChanged(QTableWidgetItem *item){
     int j = item->column();
     int i = item->row();
     string str = item->text().toStdString();
-    if(j == 0) {
-        int index = atoi(str.c_str());
-        bool isOk = true;
-        for(int i = 0; i < vhotels.size(); ++i)
-            if(vhotels[i].indexH == index)
-                isOk = false;
-        if(isOk == true)
-            vhotels[i].indexH = index;
-        else QMessageBox::about(NULL, "error", "index input error!");
-    }
-    else if(j == 1) vhotels[i].name = str;
-    else if(j == 2) vhotels[i].city = str;
-    else vhotels[i].area = str;
+    if(m.ediHotel(i, j, str) == false)
+        QMessageBox::about(NULL, "error", "index input error!");
     ui->tableWidget->clear();
     showGrid();
 }
@@ -79,15 +73,69 @@ void MainWindow::showGrid(){
     table->setHorizontalHeaderLabels(header);
     for(int i = 0; i < vhotels.size(); ++i){
         stringstream ss;
-        string s;
         ss << setfill('0') << setw(4) << vhotels[i].indexH;
-        ss >> s;
-        table->setItem(i, 0,new QTableWidgetItem(QString::fromStdString(s)));
+        table->setItem(i, 0,new QTableWidgetItem(QString::fromStdString(ss.str())));
         table->setItem(i, 1,new QTableWidgetItem(QString::fromStdString(vhotels[i].name)));
         table->setItem(i, 2,new QTableWidgetItem(QString::fromStdString(vhotels[i].city)));
         table->setItem(i, 3,new QTableWidgetItem(QString::fromStdString(vhotels[i].area)));
         for(int j = 0; j < 4; ++j) table->item(i,j)->setTextAlignment(Qt::AlignCenter);
+        ss.clear();
     }
     table->resizeColumnToContents(1);
     connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
+}
+
+void MainWindow::ShowContextMenu(const QPoint& pos){
+    QPoint gloPos = ui->tableWidget->viewport()->mapToGlobal(pos);
+    QMenu *myMenu = new QMenu;
+    myMenu->addAction(QIcon(), QString("view"), this ,SLOT(viewRooms()));
+    myMenu->addAction(QIcon(), QString("add"), this, SLOT(addRow()));
+    myMenu->addAction(QIcon(), QString("delete"), this, SLOT(deleteRow()));
+    myMenu->exec(gloPos);
+}
+
+void MainWindow::deleteRow(){
+    int i = ui->tableWidget->currentRow();
+    if(m.delHotel(i) == true)
+        ui->tableWidget->removeRow(i);
+    else QMessageBox::about(NULL, "error", "delete operation error!");
+}
+
+void MainWindow::addRow(){
+    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+    m.addHotel();
+    stringstream ss;
+    string s("INFO INPUT");
+    ss << setfill('0') << setw(4) << vhotels[vhotels.size() - 1].indexH;
+    ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(ss.str())));
+    ss.clear();
+    for(int m = 1; m < 4; ++m)
+        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, m, new QTableWidgetItem(QString::fromStdString(s)));
+}
+
+void MainWindow::viewRooms(){
+    iRow = ui->tableWidget->currentRow();
+    Roomui r;
+    r.exec();
+    /*disconnect(ui->tableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
+    auto *table = ui->tableWidget;
+    int i = table->currentRow();
+    string name = vhotels[i].name;
+    ui->tableWidget->clear();
+    QStringList header;
+    table->setColumnCount(4);
+    table->setRowCount((int)vrooms[i].size() - 1);
+    header << "name" << "key" << "price" << "type";
+    table->setHorizontalHeaderLabels(header);
+    for(int j = 1; j < vrooms[i].size(); ++j){
+        table->setItem(j - 1, 0,new QTableWidgetItem(QString::fromStdString(name)));
+        stringstream ss; string s;
+        ss << vrooms[i][j].numR;
+        ss >> s;
+        table->setItem(j - 1, 1,new QTableWidgetItem(QString::fromStdString(s)));
+        ss.clear();
+        ss << vrooms[i][j].price;
+        ss >> s;
+        table->setItem(j - 1, 2,new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
+    }*/
 }

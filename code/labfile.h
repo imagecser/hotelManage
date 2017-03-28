@@ -2,6 +2,8 @@
 #include "chotel.h"
 #include <cstdlib>
 
+
+
 class fio {
 	string hotelLoc;
 	string orderLoc;

@@ -1,84 +1,107 @@
 ﻿#include "hotelmanage.h"
 
+bool judgeNum(string str);
 
-
-bool ManageInfo::addHotel(int &index, string &name, string &city, string &area) {
-	for (auto photel : vhotels) {
-		if (photel.indexH == index) return false;
-		else if (photel.city == city && photel.name == name && photel.area == area) return false;
-	}
-	Hotel *h = new Hotel;
-	vector<Room> *vr = new vector<Room>;
-	h->area = area;
-	h->city = city;
-	h->name = name;
-	h->indexH = index;
-	vhotels.push_back(*h);
-	vrooms.push_back(*vr);
-	return true;
+void ManageInfo::addHotel() {
+    Hotel *h = new Hotel;
+    if(vhotels.size() > 0)
+        h->indexH = vhotels[vhotels.size() - 1].indexH + 1;
+    else h->indexH = 0;
+    vhotels.push_back(*h);
+    Room *pr = new Room;
+    pr->photel = h;
+    vector<Room> *pvr = new vector<Room>;
+    pvr->push_back(*pr);
+    vrooms.push_back(*pvr);
 	// TODO: 添加酒店信息
 }
 
-bool ManageInfo::addRoom(int &index, int &num, int &price, string &type) {
-	for (int i = 0; i < vhotels.size(); ++i) {
-		if (vhotels[i].indexH == index) {
-			for (int j = 0; j < vrooms[i].size(); ++j) 
-				if (vrooms[i][j].numR == num) return false;
-			Room *r = new Room;
-			r->numR = num;
-			r->photel = &vhotels[i];
-			r->price = price;
-			r->type = type;
-			vrooms[i].push_back(*r);
-			return true;
-		}
-	}
+void ManageInfo::addRoom() {
+    Room *r = new Room;
+    if(vrooms[iRow].size() > 1)
+        r->numR = vrooms[iRow][vrooms[iRow].size() - 1].numR + 1;
+    else r->numR = 0;
+    r->price = 0;
+    r->photel = &vhotels[iRow];
+    vrooms[iRow].push_back(*r);
+}
+
+bool ManageInfo::ediHotel(int i, int j, string str) { // 第i个酒店, 第j个属性
+    bool isOk = true;
+    if(j == 0) {
+        //stringstream pss;
+        int index = atoi(str.c_str());
+        //pss << setfill('0') << setw(4) <<index;
+        //if(pss.str() != str) isOk = false;
+        if(judgeNum(str) == false) isOk = false;
+        if(index > 9999 || index < 0) isOk = false;
+        for(int m = 0; m < vhotels.size(); ++m)
+            if(m != i)
+                if(vhotels[m].indexH == index)
+                    isOk = false;
+        if(isOk == true)
+            vhotels[i].indexH = index;
+        //pss.clear();
+    }
+    else if(j == 1) vhotels[i].name = str;
+    else if(j == 2) vhotels[i].city = str;
+    else vhotels[i].area = str;
+    return isOk;
+}
+
+bool ManageInfo::ediRoom(int i, int j, string str) { // 第i个房间, 第j个属性
+    bool isOk = true;
+    if(j == 1 || j == 2){
+        //stringstream pss;
+        int num = atoi(str.c_str());
+        //pss << setfill('0') << setw(6) << num;
+        //if(pss.str() != str) isOk = false;
+        if(judgeNum(str) == false) isOk = false;
+        else if(num < 0) isOk = false;
+        else
+            for(int m = 0; m < vrooms[iRow].size(); ++m)
+                if(m != i){
+                    if(j == 1){
+                        if(vrooms[iRow][m].numR == num)
+                            isOk = false;
+                    }
+                    else if (j == 2){
+                        if(vrooms[iRow][m].price == num)
+                            isOk = false;
+                    }
+                }
+        if(isOk == true){
+            if(j == 1) vrooms[iRow][i].numR = num;
+            else if(j == 2) vrooms[iRow][i].price = num;
+        }
+    }
+    else if(j == 3) vrooms[iRow][i].type = str;
+    return isOk;
+}
+
+bool ManageInfo::delHotel(int i) {
+    if(vhotels[i].ordered == false)
+        if(vhotels.size() > 0){
+            vhotels.erase(vhotels.begin() + i);
+            vrooms.erase(vrooms.begin() + i);
+            return true;
+        }
     return false;
 }
 
-bool ManageInfo::ediHotel(int & index, string & name, string & city, string & area) {
-	for (int i = 0; i < vhotels.size(); ++i) {
-		if (vhotels[i].indexH == index) {
-			vhotels[i].name = name;
-			vhotels[i].city = city;
-			vhotels[i].area = area;
-			return true;
-		}
-	}
-	return false;
+bool ManageInfo::delRoom(int m) { //第m个房间(从0开始)
+    if(vrooms[iRow][m + 1].ordered == false)
+        if(vrooms[iRow].size() > 1){
+            vrooms[iRow].erase(vrooms[iRow].begin() + m + 1);
+            return true;
+        }
+    return false;
 }
 
-bool ManageInfo::ediRoom(int & index, int & num, int & price, string & type) {
-	for (int i = 0; i < vhotels.size(); ++i) 
-		if(vhotels[i].indexH = index)
-			for (int j = 0; j < vrooms[i].size(); ++j) 
-				if (vrooms[i][j].numR == num) {
-					vrooms[i][j].price = price;
-					vrooms[i][j].type = type;
-					return true;
-				}
-	return false;
+bool judgeNum(string str){
+    for(int i = 0; i < str.size(); ++i){
+        if(str[i] < '0' || str[i] > '9')
+            return false;
+    }
+    return true;
 }
-
-bool ManageInfo::delHotel(int & index) {
-	for (int i = 0; i < vhotels.size(); ++i) {
-		if (vhotels[i].indexH == index) {
-			vhotels.erase(vhotels.begin() + i);
-			vrooms.erase(vrooms.begin() + i);
-			return true;
-		}
-	}
-	return false;
-}
-
-bool ManageInfo::delRoom(int & index, int & num) {
-	for (int i = 0; i < vhotels.size(); ++i) 
-		if (vhotels[i].indexH == index)
-			for (int j = 0; j < vrooms[i].size(); ++j)
-				if (vrooms[i][j].numR == num) {
-					vrooms[i].erase(vrooms[i].begin() + j);
-					return true;
-				}
-	return false;
-}
-

@@ -60,7 +60,7 @@ fstream & fio::fsave() {
 }
 
 fstream & fio::odinput() {
-	f.open("order.txt", ios::in);
+    f.open(orderLoc, ios::in);
 	stringstream ss, ps;
 	while(f) {
 		Order *od = new Order;
@@ -79,6 +79,8 @@ fstream & fio::odinput() {
 			for (auto &initem : outitem) {
 				if (indexag == initem.photel->indexH && numarg == initem.numR) {
 					od->proom = &initem;
+                    od->proom->ordered = true;
+                    od->proom->photel->ordered = true;
 					break;
 				}
 			}
@@ -97,7 +99,7 @@ fstream & fio::odinput() {
 }
 
 fstream & fio::odsave() {
-	f.open("orderx.txt", ios::out);
+    f.open(orderLoc, ios::out);
 	cout << vorders.size();
 	for (auto item : vorders) {
 		f << setfill('0') << setw(6) << item.orderIndex;

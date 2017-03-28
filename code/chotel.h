@@ -8,6 +8,7 @@
 #include <sstream>
 #include <iomanip>
 #include <assert.h>
+#include <ctype.h>
 using namespace std;
 #define INFINE
 #endif // !INFILE
@@ -19,11 +20,15 @@ extern vector<vector<Room>> vrooms;
 extern vector<Hotel> vhotels;
 extern vector<Order> vorders;
 
+extern int iRow;
+
 struct Hotel {
 	int indexH;
 	string name;
 	string city;
 	string area;
+    bool ordered;
+    Hotel():ordered(false){}
 };
 
 struct Room {
@@ -31,6 +36,8 @@ struct Room {
 	int price;
 	string type;
 	Hotel *photel;
+    bool ordered;
+    Room():ordered(false){}
 };
 
 struct Order {

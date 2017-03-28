@@ -32,7 +32,9 @@ SOURCES += main.cpp\
     ../code/hoteluser.cpp \
     ../code/labfile.cpp \
     ../code/launcher.cpp \
-    ../code/signiu.cpp
+    ../code/signiu.cpp \
+    roomui.cpp \
+    orderui.cpp
 
 HEADERS  += mainwindow.h \
     loginui.h \
@@ -41,10 +43,14 @@ HEADERS  += mainwindow.h \
     ../code/hotelplc.h \
     ../code/hoteluser.h \
     ../code/labfile.h \
-    ../code/signiu.h
+    ../code/signiu.h \
+    roomui.h \
+    orderui.h
 
 FORMS    += mainwindow.ui \
-    loginui.ui
+    loginui.ui \
+    roomui.ui \
+    orderui.ui
 
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

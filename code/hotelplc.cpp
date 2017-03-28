@@ -1,6 +1,6 @@
-#include "hotelplc.h"
+ï»¿#include "hotelplc.h"
 
 PoliceInfo & PoliceInfo::viewAll() {
 	return *this;
-	// TODO: ÔÚ´Ë´¦²åÈë return Óï¾ä
+	// TODO: åœ¨æ­¤å¤„æ’å…¥ return è¯­å¥
 }
