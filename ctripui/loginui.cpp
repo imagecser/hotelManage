@@ -16,10 +16,6 @@ loginui::~loginui()
     delete ui;
 }
 
-void loginui::on_loginBtn_clicked()
-{
-
-}
 
 void loginui::adminTemp(){
     this->close();

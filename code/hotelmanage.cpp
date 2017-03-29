@@ -44,8 +44,11 @@ void ManageInfo::addRoom() {
     //else r->numR = 0;
     r->price = 0;
     qDebug() << vrooms[iRow].size();
+    r->indexH = vhotels[itemp].indexH;
     vrooms[iRow].push_back(*r);
     mmap[&vrooms[iRow][vrooms[iRow].size() - 1]] = &vhotels[itemp];
+    //vrooms[iRow][vrooms[iRow].size() - 1].indexH = vhotels[itemp].indexH;
+    //xsortHotel();
 }
 
 bool ManageInfo::ediHotel(int i, int j, string str) { // 第i个酒店, 第j个属性

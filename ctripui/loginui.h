@@ -18,7 +18,6 @@ public:
     ~loginui();
 
 private slots:
-    void on_loginBtn_clicked();
     void adminTemp();
     void userTemp();
 
