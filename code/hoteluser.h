@@ -3,7 +3,6 @@
 
 class UserInfo {
 	UserInfo & findInfo();
-	UserInfo & orderU();
-	UserInfo & viewOrder();
+    UserInfo & orderU();
 	UserInfo & delOrder();
 };

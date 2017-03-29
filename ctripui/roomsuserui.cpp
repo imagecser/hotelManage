@@ -1,21 +1,20 @@
-#include "userui.h"
 #include "roomsuserui.h"
 
-Userui::Userui(QWidget *parent) :
+RoomsUserui::RoomsUserui(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Userui)
+    ui(new Ui::RoomsUserui)
 {
     ui->setupUi(this);
+    connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(orderRoom(QTableWidgetItem*)));
     buildTable();
-    connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(viewRooms(QTableWidgetItem*)));
 }
 
-Userui::~Userui()
+RoomsUserui::~RoomsUserui()
 {
     delete ui;
 }
 
-void Userui::buildTable(){
+void RoomsUserui::buildTable(){
     auto *table = ui->tableWidget;
     table->verticalHeader()->setVisible(false);
     table->horizontalHeader()->setHighlightSections(false);
@@ -43,30 +42,32 @@ void Userui::buildTable(){
     showGrid();
 }
 
-void Userui::showGrid(){
-    sort(vhotels.begin(), vhotels.end(), lessHotel());
-    sort(vrooms.begin(), vrooms.end(), lessRoom());
+void RoomsUserui::showGrid(){
     auto *table = ui->tableWidget;
+    int i = uRow;
+    string name = vhotels[i].name;
+    ui->tableWidget->clear();
     QStringList header;
     table->setColumnCount(4);
-    table->setRowCount((int)vhotels.size());
-    header << "index" << "name" << "city" << "area";
+    table->setRowCount((int)vrooms[i].size() - 1);
+    header << "name" << "key" << "price" << "type";
     table->setHorizontalHeaderLabels(header);
-    for(int i = 0; i < vhotels.size(); ++i){
-        stringstream ss;
-        ss << setfill('0') << setw(4) << vhotels[i].indexH;
-        table->setItem(i, 0,new QTableWidgetItem(QString::fromStdString(ss.str())));
-        table->setItem(i, 1,new QTableWidgetItem(QString::fromStdString(vhotels[i].name)));
-        table->setItem(i, 2,new QTableWidgetItem(QString::fromStdString(vhotels[i].city)));
-        table->setItem(i, 3,new QTableWidgetItem(QString::fromStdString(vhotels[i].area)));
-        for(int j = 0; j < 4; ++j) table->item(i,j)->setTextAlignment(Qt::AlignCenter);
+    for(int j = 1; j < vrooms[i].size(); ++j){
+        table->setItem(j - 1, 0, new QTableWidgetItem(QString::fromStdString(name)));
+        stringstream ss; string s;
+        ss << vrooms[i][j].numR;
+        ss >> s;
+        table->setItem(j - 1, 1, new QTableWidgetItem(QString::fromStdString(s)));
         ss.clear();
+        ss << vrooms[i][j].price;
+        ss >> s;
+        table->setItem(j - 1, 2, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
+        table->setItem(j - 1, 3, new QTableWidgetItem(QString::fromStdString(vrooms[i][j].type)));
+        for(int k = 0; k < 4; ++k) table->item(j - 1,k)->setTextAlignment(Qt::AlignCenter);
     }
-    table->resizeColumnToContents(1);
+    table->resizeColumnToContents(0);
 }
 
-void Userui::viewRooms(QTableWidgetItem* item){
-    uRow = item->row();
-    RoomsUserui ru;
-    ru.exec();
+void RoomsUserui::orderRoom(QTableWidgetItem *item){
+    uColumn = item->row() + 1;
 }

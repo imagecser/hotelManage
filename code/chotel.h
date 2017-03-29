@@ -21,6 +21,8 @@ extern vector<Hotel> vhotels;
 extern vector<Order> vorders;
 
 extern int iRow;
+extern int uRow;
+extern int uColumn;
 
 struct Hotel {
 	int indexH;

@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "chotel.h"
 #include <cstdlib>
-
+#include <QtDebug>
 
 
 class fio {
@@ -37,3 +37,5 @@ struct lessOrder{
         return a.orderIndex < b.orderIndex;
     }
 };
+
+void sortHotel();

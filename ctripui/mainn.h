@@ -1,7 +1,6 @@
 #ifndef MAINN_H
 #define MAINN_H
 
-#include <QDialog>
 
 #include "../code/chotel.h"
 #include "../code/labfile.h"

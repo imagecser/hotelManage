@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Userui</class>
- <widget class="QDialog" name="Userui">
+ <class>RoomsUserui</class>
+ <widget class="QDialog" name="RoomsUserui">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>682</width>
-    <height>430</height>
+    <width>641</width>
+    <height>449</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>40</y>
-     <width>611</width>
-     <height>351</height>
+     <x>30</x>
+     <y>20</y>
+     <width>581</width>
+     <height>411</height>
     </rect>
    </property>
   </widget>

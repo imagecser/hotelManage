@@ -12,6 +12,8 @@ vector<Order> vorders;
 vector<Upsw> vpsws;
 
 int iRow;
+int uRow;
+int uColumn;
 /*
 Room & Room::operator=(Hotel & h) {
 	indexH = h.indexH;

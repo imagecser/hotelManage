@@ -1,5 +1,4 @@
 #include "roomui.h"
-#include "ui_roomui.h"
 
 Roomui::Roomui(QWidget *parent) :
     QDialog(parent),

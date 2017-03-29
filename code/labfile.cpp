@@ -22,7 +22,7 @@ fstream & fio::finput() {
         pvecr->push_back(*pr);
 		while (true) {
 			Room *r = new Room;
-			r->photel = h;
+            r->photel = h;
 			getline(ss, sIndex, ',');
 			if (sIndex.size() == 0) break; // 判断到头与否
 			ps << sIndex;
@@ -35,13 +35,13 @@ fstream & fio::finput() {
             pvecr->push_back(*r);
 		}
 		ss.clear();
-		vrooms.push_back(*pvecr);
+        vrooms.push_back(*pvecr);
         vhotels.push_back(*h);
         sort(vhotels.begin(), vhotels.end(), lessHotel());
         sort(vrooms.begin(), vrooms.end(), lessRoom());
     }
     f.close();
-	return f;
+    return f;
 	// TODO: 从hotelLoc读入到数据结构
 }
 
@@ -76,7 +76,7 @@ fstream & fio::odinput() {
 		getline(ss, sIndex, '|');
 		ps << sIndex; ps >> numarg; ps.clear();
 		for (auto &outitem:vrooms)
-			for (auto &initem : outitem) {
+            for (auto &initem : outitem) {
 				if (indexag == initem.photel->indexH && numarg == initem.numR) {
 					od->proom = &initem;
                     od->proom->ordered = true;
@@ -113,3 +113,42 @@ fstream & fio::odsave() {
 	return f;
 	// TODO: 存储vorders到order.txt
 }
+
+void sortHotel(){
+    for(int i = 0, min, j; i < vhotels.size(); ++i){
+        for(min = i, j = i + 1; j < vhotels.size();++j){
+            if(vhotels[j].indexH < vhotels[min].indexH){
+                min = j;
+            }
+        }
+        int temp = vhotels[i].indexH;
+        vhotels[i].indexH = vhotels[min].indexH;
+        vhotels[min].indexH = temp;
+        string s = vhotels[i].name;
+        vhotels[i].name = vhotels[min].name;
+        vhotels[min].name = s;
+        s = vhotels[i].city;
+        vhotels[i].city = vhotels[min].city;
+        vhotels[min].city = s;
+        s = vhotels[i].area;
+        vhotels[i].area = vhotels[min].area;
+        vhotels[min].area = s;
+        bool b = vhotels[i].ordered;
+        vhotels[i].ordered = vhotels[min].ordered;
+        vhotels[min].ordered = b;
+        qDebug() << vhotels[min].indexH << ' ' << min;
+        qDebug() << vhotels[i].indexH << ' ' << i;
+        for(int j = 0; j < vrooms[i].size(); ++j)
+            vrooms[i][j].photel = &vhotels[min];
+        for(int j = 0; j < vrooms[min].size(); ++j)
+            vrooms[min][j].photel = &vhotels[i];
+    }/*
+    for(int i = 0; i < vhotels.size();++i)
+        qDebug() << vrooms[i][0].photel->indexH;
+    sort(vrooms.begin(), vrooms.end(), lessRoom());
+    for(int i = 0; i < vhotels.size();++i)
+        qDebug() << vrooms[i][0].photel->indexH << endl;
+*/
+}
+
+

@@ -65,8 +65,9 @@ void Mainn::getItemChanged(QTableWidgetItem *item){
 
 void Mainn::showGrid(){
     disconnect(ui->tableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
-    sort(vhotels.begin(), vhotels.end(), lessHotel());
-    sort(vrooms.begin(), vrooms.end(), lessRoom());
+    //sort(vrooms.begin(), vrooms.end(), lessRoom());
+    //sort(vhotels.begin(), vhotels.end(), lessHotel());
+    sortHotel();
     auto *table = ui->tableWidget;
     QStringList header;
     table->setColumnCount(4);
