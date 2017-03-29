@@ -39,9 +39,11 @@ bool ManageInfo::ediHotel(int i, int j, string str) { // 第i个酒店, 第j个�
             if(m != i)
                 if(vhotels[m].indexH == index)
                     isOk = false;
-        if(isOk == true)
+        if(isOk == true){
             vhotels[i].indexH = index;
-        //pss.clear();
+            for(int j = 0; j < vrooms[i].size();++j)
+                vrooms[i][j].indexH = index;
+        }//pss.clear();
     }
     else if(j == 1) vhotels[i].name = str;
     else if(j == 2) vhotels[i].city = str;

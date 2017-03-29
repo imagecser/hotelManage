@@ -1,5 +1,6 @@
 ﻿#pragma once
 #ifndef INFILE
+#include <map>
 #include <iostream>
 #include <vector>
 #include <stdio.h>
@@ -34,6 +35,7 @@ struct Hotel {
 };
 
 struct Room {
+    int indexH;
 	int numR;
 	int price;
 	string type;
@@ -70,3 +72,5 @@ struct Order:public Room {
 	Order & operator=(Room & r);
 };
 */
+
+map<Room, Hotel> mmap;
