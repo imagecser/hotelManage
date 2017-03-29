@@ -1,5 +1,6 @@
 #include "loginui.h"
 #include "ui_loginui.h"
+#include <QDate>
 
 loginui::loginui(QWidget *parent) :
     QDialog(parent),

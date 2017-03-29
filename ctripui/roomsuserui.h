@@ -8,6 +8,7 @@
 #include <QtWidgets\qscrollbar.h>
 #include <QtCore\qfile.h>
 #include "ui_roomsuserui.h"
+#include "ordering.h"
 
 namespace Ui {
 class RoomsUserui;

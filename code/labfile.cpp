@@ -99,6 +99,7 @@ fstream & fio::odinput() {
 		}
 		getline(ss, od->uname, '|');
 		getline(ss, od->idcard, '|');
+        getline(ss, od->user, '|');
 		vorders.push_back(*od);
 	}
 	f.close();
@@ -141,14 +142,11 @@ void sortHotel(){
     //    qDebug() << vrooms[i][0].indexH << mmap.find(&vrooms[i][0])->second->indexH;
 }
 
-
 int getVecRow(int row){
     for(int i = 0; i < vrooms.size(); ++i){
-        qDebug() << vhotels.size();
-        qDebug() << (mmap.find(&vrooms[i][0]))->second->indexH;
-        qDebug() << vhotels[row].indexH;
         if(mmap.find(&vrooms[i][0])->second == &vhotels[row]){
             return i;
         }
     }
+    return 0;
 }

@@ -71,4 +71,6 @@ void RoomsUserui::showGrid(){
 
 void RoomsUserui::orderRoom(QTableWidgetItem *item){
     uColumn = item->row() + 1;
+    Ordering oding;
+    oding.exec();
 }

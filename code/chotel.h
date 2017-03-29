@@ -25,6 +25,10 @@ extern int iRow;
 extern int uRow;
 extern int uColumn;
 
+extern int dateo[6];
+extern string idcardo;
+extern string unameo;
+
 struct Hotel {
 	int indexH;
 	string name;
@@ -50,6 +54,7 @@ struct Order {
 	int date[6];
 	Room *proom;
 	string idcard;
+    string user;
 };
 
 struct Upsw {

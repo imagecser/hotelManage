@@ -15,6 +15,11 @@ int iRow;
 int uRow;
 int uColumn;
 map<Room*, Hotel*> mmap;
+
+int dateo[6];
+string idcardo;
+string unameo;
+
 /*
 Room & Room::operator=(Hotel & h) {
 	indexH = h.indexH;

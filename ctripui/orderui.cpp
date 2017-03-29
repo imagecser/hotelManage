@@ -46,20 +46,24 @@ void Orderui::showGrid(){
     auto *table = ui->tableWidget;
     QStringList header;
     table->setColumnCount(6);
-    table->setRowCount((int)vorders.size());
+    //table->setRowCount((int)vorders.size());
     header << "index" << "city" << "name" << "area" <<"key" << "type";
     table->setHorizontalHeaderLabels(header);
-    for(int i = 0; i < vorders.size();++i){
-        stringstream ss; string s;
-        ss << setfill('0') << setw(6) << vorders[i].orderIndex; ss >> s;
-        table->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
-        table->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->city)));
-        table->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->name)));
-        table->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->area)));
-        ss << vorders[i].proom->numR; ss >> s;
-        table->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
-        table->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(vorders[i].proom->type)));
-        for(int j = 0; j < 6; ++j) table->item(i, j)->setTextAlignment(Qt::AlignCenter);
+    for(int i = 0, k = 0; i < vorders.size();++i){
+        if(vorders[i].user == "image"){
+            table->setRowCount(table->rowCount() + 1);
+            stringstream ss; string s;
+            ss << setfill('0') << setw(6) << vorders[i].orderIndex; ss >> s;
+            table->setItem(k, 0, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
+            table->setItem(k, 1, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->city)));
+            table->setItem(k, 2, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->name)));
+            table->setItem(k, 3, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->area)));
+            ss << vorders[i].proom->numR; ss >> s;
+            table->setItem(k, 4, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
+            table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vorders[i].proom->type)));
+            for(int j = 0; j < 6; ++j) table->item(k, j)->setTextAlignment(Qt::AlignCenter);
+            ++k;
+        }
     }
     for(int i = 0; i < table->rowCount(); ++i) table->item(i, 0)->setFlags(Qt::NoItemFlags);
     table->resizeColumnToContents(2);
