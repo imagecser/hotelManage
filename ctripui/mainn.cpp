@@ -99,9 +99,11 @@ void Mainn::ShowContextMenu(const QPoint& pos){
 
 void Mainn::deleteRow(){
     int i = ui->tableWidget->currentRow();
+    qDebug() << vhotels.size();
     if(m.delHotel(i) == true)
         ui->tableWidget->removeRow(i);
     else QMessageBox::about(NULL, "error", "delete operation error!");
+    sortHotel();
 }
 
 void Mainn::addRow(){
@@ -114,6 +116,7 @@ void Mainn::addRow(){
     ss.clear();
     for(int m = 1; m < 4; ++m)
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, m, new QTableWidgetItem(QString::fromStdString(s)));
+    sortHotel();
 }
 
 void Mainn::viewRooms(){

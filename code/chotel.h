@@ -73,4 +73,4 @@ struct Order:public Room {
 };
 */
 
-map<Room, Hotel> mmap;
+extern map<Room*, Hotel*> mmap;

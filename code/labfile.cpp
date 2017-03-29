@@ -39,8 +39,13 @@ fstream & fio::finput() {
 		ss.clear();
         vrooms.push_back(*pvecr);
         vhotels.push_back(*h);
-        sort(vhotels.begin(), vhotels.end(), lessHotel());
-        sort(vrooms.begin(), vrooms.end(), lessRoom());
+        //sort(vhotels.begin(), vhotels.end(), lessHotel());
+        for(int i = 0; i < vrooms.size(); ++i){
+            for(int j = 0; j < vrooms[i].size(); ++j){
+                mmap[&vrooms[i][j]] = &vhotels[i];
+            }
+        }
+        //sort(vrooms.begin(), vrooms.end(), lessRoom());
     }
     f.close();
     return f;
@@ -52,8 +57,9 @@ fstream & fio::fsave() {
 	for (unsigned int i = 0; i < vhotels.size(); ++i) {
 		f << setfill('0') << setw(4) << vhotels[i].indexH;
 		f << ',' << vhotels[i].name << ',' << vhotels[i].city << ',' << vhotels[i].area << '|';
-        for (unsigned int j = 1; j < vrooms[i].size(); ++j)
-			f << vrooms[i][j].numR << ',' << vrooms[i][j].price << ',' << vrooms[i][j].type << '|';
+        int pi = getVecRow(i);
+        for (unsigned int j = 1; j < vrooms[pi].size(); ++j)
+            f << vrooms[pi][j].numR << ',' << vrooms[pi][j].price << ',' << vrooms[pi][j].type << '|';
 		f << endl;
 	}
 	f.close();
@@ -117,21 +123,32 @@ fstream & fio::odsave() {
 }
 
 void sortHotel(){
-    vhotels[1].indexH = 5;
-    qDebug() << vrooms[1][0].photel->indexH;
     //for(int i = 0; i < vrooms.size(); ++i)
     //    qDebug() << vrooms[i][0].indexH << ' ' << vrooms[i][0].photel->indexH;
     sort(vhotels.begin(), vhotels.end(), lessHotel());
     for(int i = 0; i < vrooms.size(); ++i){
-        if(vrooms[i][0].indexH != vrooms[i][0].photel->indexH){
+        if(vrooms[i][0].indexH != mmap.find(&vrooms[i][0])->second->indexH){
             for(int m = 0; m < vhotels.size(); ++m){
                 if(vrooms[i][0].indexH == vhotels[m].indexH){
                     for(int j = 0; j < vrooms[i].size(); ++j)
-                        vrooms[i][j].photel = &vhotels[m];
+                        mmap[&vrooms[i][j]] = &vhotels[m];
+                    //qDebug() << i << m << vrooms[i][0].indexH << mmap.find(&vrooms[i][0])->second->indexH;
                 }
             }
         }
     }
     //for(int i = 0; i < vrooms.size(); ++i)
-    //    qDebug() << vrooms[i][0].indexH << ' ' << vrooms[i][0].photel->indexH;
+    //    qDebug() << vrooms[i][0].indexH << mmap.find(&vrooms[i][0])->second->indexH;
+}
+
+
+int getVecRow(int row){
+    for(int i = 0; i < vrooms.size(); ++i){
+        qDebug() << vhotels.size();
+        qDebug() << (mmap.find(&vrooms[i][0]))->second->indexH;
+        qDebug() << vhotels[row].indexH;
+        if(mmap.find(&vrooms[i][0])->second == &vhotels[row]){
+            return i;
+        }
+    }
 }

@@ -5,6 +5,7 @@ Roomui::Roomui(QWidget *parent) :
     ui(new Ui::Roomui)
 {
     ui->setupUi(this);
+    iRow = getVecRow(iRow);
     buildTable();
 }
 
@@ -33,7 +34,8 @@ void Roomui::ShowContextMenu(const QPoint& pos){
 
 void Roomui::deleteRow(){
     int i = ui->tableWidget->currentRow();
-    if(m.delRoom(i) == true)
+    if(i == -1) ++i;
+    if(m.delRoom(i) == true && i > -1)
         ui->tableWidget->removeRow(i);
     else QMessageBox::about(NULL, "error", "delete operation error!");
 }
@@ -109,3 +111,5 @@ void Roomui::showGrid(){
     for(int i = 0; i < table->rowCount(); ++i) table->item(i, 0)->setFlags(Qt::NoItemFlags);
     connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
 }
+
+

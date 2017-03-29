@@ -14,6 +14,7 @@ vector<Upsw> vpsws;
 int iRow;
 int uRow;
 int uColumn;
+map<Room*, Hotel*> mmap;
 /*
 Room & Room::operator=(Hotel & h) {
 	indexH = h.indexH;

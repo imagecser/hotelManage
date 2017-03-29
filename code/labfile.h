@@ -39,3 +39,4 @@ struct lessOrder{
 };
 
 void sortHotel();
+int getVecRow(int row);

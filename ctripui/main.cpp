@@ -12,7 +12,8 @@ int main(int argc, char *argv[])
     f.odinput();
     QApplication a(argc, argv);
     //w.show();
+    QApplication::setQuitOnLastWindowClosed(true);
     loginui l;
     l.exec();
-    return a.exec();
+    return 0;
 }
