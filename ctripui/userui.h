@@ -7,6 +7,8 @@
 #include <QtWidgets\qscrollbar.h>
 #include <QtCore\qfile.h>
 #include "ui_userui.h"
+#include "../code/hoteluser.h"
+#include "orderuser.h"
 namespace Ui {
 class Userui;
 }
@@ -25,6 +27,7 @@ private:
     Ui::Userui *ui;
 private slots:
     void viewRooms(QTableWidgetItem*);
+    void viewOrders();
 };
 
 #endif // USERUI_H

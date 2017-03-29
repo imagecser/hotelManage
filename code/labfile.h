@@ -27,8 +27,9 @@ struct lessHotel{
 };
 
 struct lessRoom{
-    bool operator()(const vector<Room> &a, const vector<Room> &b){
-        return a[0].photel->indexH < b[0].photel->indexH;
+    bool operator()(vector<Room> &a, vector<Room> &b){
+        //return a[0].photel->indexH < b[0].photel->indexH;
+        return mmap.find(&a[0])->second->indexH < mmap.find(&b[0])->second->indexH;
     }
 };
 

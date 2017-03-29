@@ -11,14 +11,12 @@ vector<Order> vorders;
 
 vector<Upsw> vpsws;
 
+int itemp;
 int iRow;
 int uRow;
 int uColumn;
 map<Room*, Hotel*> mmap;
 
-int dateo[6];
-string idcardo;
-string unameo;
 
 /*
 Room & Room::operator=(Hotel & h) {

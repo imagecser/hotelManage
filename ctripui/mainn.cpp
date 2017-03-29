@@ -10,7 +10,6 @@ Mainn::Mainn(QWidget *parent) :
     setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
     //setFixedSize(this->width(), this->height());
     ui->setupUi(this);
-    Roomui *r = new Roomui;
     //connect(ui->indexEdit, SIGNAL(textChanged(QString)), this, );
     //tconnect(ui->roomBtn, SIGNAL(pressed()), r, SLOT(changeBtn()));
     buildTable();
@@ -99,7 +98,6 @@ void Mainn::ShowContextMenu(const QPoint& pos){
 
 void Mainn::deleteRow(){
     int i = ui->tableWidget->currentRow();
-    qDebug() << vhotels.size();
     if(m.delHotel(i) == true)
         ui->tableWidget->removeRow(i);
     else QMessageBox::about(NULL, "error", "delete operation error!");

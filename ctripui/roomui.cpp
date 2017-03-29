@@ -1,10 +1,12 @@
 #include "roomui.h"
 
+
 Roomui::Roomui(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Roomui)
 {
     ui->setupUi(this);
+    itemp = iRow;
     iRow = getVecRow(iRow);
     buildTable();
 }
@@ -87,7 +89,7 @@ void Roomui::showGrid(){
     auto *table = ui->tableWidget;
     disconnect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(getItemChanged(QTableWidgetItem*)));
     int i = iRow;
-    string name = vhotels[i].name;
+    string name = vhotels[itemp].name;
     ui->tableWidget->clear();
     QStringList header;
     table->setColumnCount(4);

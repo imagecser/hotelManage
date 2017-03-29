@@ -20,7 +20,6 @@ void ManageInfo::addHotel() {
     else if(vhotels.size() == 1 || i == vhotels.size() - 1) h->indexH = vhotels[vhotels.size() - 1].indexH + 1;*/
     vhotels.push_back(*h);
     Room *pr = new Room;
-    pr->photel = h;
     vector<Room> *pvr = new vector<Room>;
     pvr->push_back(*pr);
     vrooms.push_back(*pvr);
@@ -44,8 +43,9 @@ void ManageInfo::addRoom() {
     //    r->numR = vrooms[iRow][vrooms[iRow].size() - 1].numR + 1;
     //else r->numR = 0;
     r->price = 0;
-    r->photel = &vhotels[iRow];
+    qDebug() << vrooms[iRow].size();
     vrooms[iRow].push_back(*r);
+    mmap[&vrooms[iRow][vrooms[iRow].size() - 1]] = &vhotels[itemp];
 }
 
 bool ManageInfo::ediHotel(int i, int j, string str) { // 第i个酒店, 第j个属性
@@ -110,7 +110,6 @@ bool ManageInfo::delHotel(int i) {
 }
 
 bool ManageInfo::delRoom(int m) { //第m个房间(从0开始)
-    qDebug() << iRow;
     if(vrooms[iRow].size() > 1)
         if(vrooms[iRow][m + 1].ordered == false){
             vrooms[iRow].erase(vrooms[iRow].begin() + m + 1);

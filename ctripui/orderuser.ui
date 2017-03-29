@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Userui</class>
- <widget class="QDialog" name="Userui">
+ <class>OrderUser</class>
+ <widget class="QDialog" name="OrderUser">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>682</width>
-    <height>431</height>
+    <width>928</width>
+    <height>459</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,20 +16,20 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>30</y>
-     <width>611</width>
-     <height>351</height>
+     <x>20</x>
+     <y>20</y>
+     <width>891</width>
+     <height>401</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="orderBtn">
+  <widget class="QPushButton" name="saveBtn">
    <property name="geometry">
     <rect>
-     <x>582</x>
-     <y>390</y>
+     <x>840</x>
+     <y>430</y>
      <width>71</width>
-     <height>31</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="font">
@@ -39,7 +39,7 @@
     </font>
    </property>
    <property name="text">
-    <string>orders</string>
+    <string>save</string>
    </property>
   </widget>
  </widget>

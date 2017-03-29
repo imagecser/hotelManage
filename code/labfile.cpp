@@ -18,12 +18,12 @@ fstream & fio::finput() {
 		getline(ss, h->area, '|'); // 填充hotel实例的属性
 		vector<Room> *pvecr = new vector<Room>;
         Room *pr = new Room;
-        pr->photel = h;
+        //pr->photel = h;
         pr->indexH = h->indexH;
         pvecr->push_back(*pr);
 		while (true) {
 			Room *r = new Room;
-            r->photel = h;
+            //r->photel = h;
             r->indexH = h->indexH;
 			getline(ss, sIndex, ',');
 			if (sIndex.size() == 0) break; // 判断到头与否
@@ -57,6 +57,7 @@ fstream & fio::fsave() {
 	for (unsigned int i = 0; i < vhotels.size(); ++i) {
 		f << setfill('0') << setw(4) << vhotels[i].indexH;
 		f << ',' << vhotels[i].name << ',' << vhotels[i].city << ',' << vhotels[i].area << '|';
+        qDebug() << mmap.find(&vrooms[4][0])->second->indexH;
         int pi = getVecRow(i);
         for (unsigned int j = 1; j < vrooms[pi].size(); ++j)
             f << vrooms[pi][j].numR << ',' << vrooms[pi][j].price << ',' << vrooms[pi][j].type << '|';
@@ -73,25 +74,24 @@ fstream & fio::odinput() {
 	while(f) {
 		Order *od = new Order;
 		string line, sIndex;
-		getline(f, line);
+        getline(f, line);
 		if(line.size() == 0) break;
 		ss << line;
-		getline(ss, sIndex, '|');
+        getline(ss, sIndex, ',');
 		ps << sIndex; ps >> od->orderIndex; ps.clear();
 		int indexag, numarg;
 		getline(ss, sIndex, ',');
 		ps << sIndex; ps >> indexag; ps.clear();
 		getline(ss, sIndex, '|');
-		ps << sIndex; ps >> numarg; ps.clear();
-		for (auto &outitem:vrooms)
-            for (auto &initem : outitem) {
-				if (indexag == initem.photel->indexH && numarg == initem.numR) {
-					od->proom = &initem;
+        ps << sIndex; ps >> numarg; ps.clear();
+        for(int i = 0; i < vrooms.size(); ++i)
+            for(int j = 1; j < vrooms[i].size(); ++j){
+                if(numarg == vrooms[i][j].numR && indexag == mmap.find(&vrooms[i][j])->second->indexH){
+                    od->proom = &vrooms[i][j];
                     od->proom->ordered = true;
-                    od->proom->photel->ordered = true;
-					break;
-				}
-			}
+                    mmap.find(od->proom)->second->ordered = true;
+                }
+            }
 		string pstr[6];
 		for (int i = 0; i < 6; ++i) {
 			getline(ss, pstr[i], '/');
@@ -109,13 +109,14 @@ fstream & fio::odinput() {
 
 fstream & fio::odsave() {
     f.open(orderLoc, ios::out);
-	cout << vorders.size();
-	for (auto item : vorders) {
-		f << setfill('0') << setw(6) << item.orderIndex;
-		f << ',' << setfill('0') << setw(4) <<item.proom->photel->indexH;
-		f << ',' << item.proom->numR << '|';
-		for (int i = 0; i < 6; ++i) f << item.date[i] << '/';
-		f << item.uname << '|' << item.idcard << '|';
+    qDebug() << vorders.size();
+    for (int i = 0; i < vorders.size(); ++i) {
+        f << setfill('0') << setw(6) << vorders[i].orderIndex;
+        f << ',' << setfill('0') << setw(4) << mmap.find(vorders[i].proom)->second->indexH;
+        f << ',' << vorders[i].proom->numR << '|';
+        for (int j = 0; j < 6; ++j)
+            f << vorders[i].date[j] << '/';
+        f << vorders[i].uname << '|' << vorders[i].idcard << '|' << vorders[i].user << '|';
 		f << endl;
 	}
 	f.close();
@@ -148,5 +149,4 @@ int getVecRow(int row){
             return i;
         }
     }
-    return 0;
 }

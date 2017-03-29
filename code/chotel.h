@@ -20,14 +20,13 @@ struct Hotel;
 extern vector<vector<Room>> vrooms;
 extern vector<Hotel> vhotels;
 extern vector<Order> vorders;
+extern map<Room*, Hotel*> mmap;
 
 extern int iRow;
 extern int uRow;
 extern int uColumn;
+extern int itemp;
 
-extern int dateo[6];
-extern string idcardo;
-extern string unameo;
 
 struct Hotel {
 	int indexH;
@@ -42,8 +41,7 @@ struct Room {
     int indexH;
 	int numR;
 	int price;
-	string type;
-	Hotel *photel;
+    string type;
     bool ordered;
     Room():ordered(false){}
 };
@@ -78,4 +76,3 @@ struct Order:public Room {
 };
 */
 
-extern map<Room*, Hotel*> mmap;

@@ -4,6 +4,8 @@
 #include <QDialog>
 #include "../code/chotel.h"
 #include "ui_ordering.h"
+#include "../code/hoteluser.h"
+
 
 namespace Ui {
 class Ordering;
