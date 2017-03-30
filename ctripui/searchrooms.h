@@ -23,10 +23,12 @@ public:
     void buildTable();
     void showGrid();
     void showData();
-    bool algo(Room dest);
+    bool algo(int i, int j);
 
 private:
     Ui::SearchRooms *ui;
+private slots:
+    void orderRoom(QTableWidgetItem *item);
 };
 
 extern string keyword;
