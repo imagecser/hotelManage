@@ -4,7 +4,6 @@
 #include <QDialog>
 #include "../code/chotel.h"
 #include "../code/labfile.h"
-#include "../code/hotelmanage.h"
 #include <QtWidgets\qscrollbar.h>
 #include <QtCore\qfile.h>
 #include "ui_roomsuserui.h"

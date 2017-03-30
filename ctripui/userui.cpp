@@ -9,6 +9,7 @@ Userui::Userui(QWidget *parent) :
     buildTable();
     connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(viewRooms(QTableWidgetItem*)));
     connect(ui->orderBtn, SIGNAL(clicked()), this, SLOT(viewOrders()));
+    connect(ui->searchBtn, SIGNAL(clicked()), this, SLOT(search()));
 }
 
 Userui::~Userui()
@@ -76,4 +77,9 @@ void Userui::viewRooms(QTableWidgetItem* item){
 void Userui::viewOrders(){
     OrderUser odu;
     odu.exec();
+}
+
+void Userui::search(){
+    SearchRooms sr;
+    sr.exec();
 }

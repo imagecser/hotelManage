@@ -38,7 +38,8 @@ SOURCES += main.cpp\
     userui.cpp \
     roomsuserui.cpp \
     ordering.cpp \
-    orderuser.cpp
+    orderuser.cpp \
+    searchrooms.cpp
 
 HEADERS  += \
     loginui.h \
@@ -54,7 +55,8 @@ HEADERS  += \
     userui.h \
     roomsuserui.h \
     ordering.h \
-    orderuser.h
+    orderuser.h \
+    searchrooms.h
 
 FORMS    += \
     loginui.ui \
@@ -64,7 +66,8 @@ FORMS    += \
     userui.ui \
     roomsuserui.ui \
     ordering.ui \
-    orderuser.ui
+    orderuser.ui \
+    searchrooms.ui
 
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

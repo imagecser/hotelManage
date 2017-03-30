@@ -9,6 +9,8 @@
 #include "ui_userui.h"
 #include "../code/hoteluser.h"
 #include "orderuser.h"
+#include "searchrooms.h"
+
 namespace Ui {
 class Userui;
 }
@@ -28,6 +30,7 @@ private:
 private slots:
     void viewRooms(QTableWidgetItem*);
     void viewOrders();
+    void search();
 };
 
 #endif // USERUI_H

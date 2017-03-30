@@ -1,21 +1,20 @@
-#include "roomsuserui.h"
+#include "searchrooms.h"
+#include "ui_searchrooms.h"
 
-RoomsUserui::RoomsUserui(QWidget *parent) :
+SearchRooms::SearchRooms(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::RoomsUserui)
+    ui(new Ui::SearchRooms)
 {
     ui->setupUi(this);
-    uRow = getVecRow(uRow);
-    connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(orderRoom(QTableWidgetItem*)));
     buildTable();
 }
 
-RoomsUserui::~RoomsUserui()
+SearchRooms::~SearchRooms()
 {
     delete ui;
 }
 
-void RoomsUserui::buildTable(){
+void SearchRooms::buildTable(){
     auto *table = ui->tableWidget;
     table->verticalHeader()->setVisible(false);
     table->horizontalHeader()->setHighlightSections(false);
@@ -43,7 +42,7 @@ void RoomsUserui::buildTable(){
     showGrid();
 }
 
-void RoomsUserui::showGrid(){
+void SearchRooms::showGrid(){
     auto *table = ui->tableWidget;
     int i = uRow;
     string name = vhotels[i].name;
@@ -53,25 +52,5 @@ void RoomsUserui::showGrid(){
     table->setRowCount((int)vrooms[i].size() - 1);
     header << "name" << "key" << "price" << "type";
     table->setHorizontalHeaderLabels(header);
-    for(int j = 1; j < vrooms[i].size(); ++j){
-        table->setItem(j - 1, 0, new QTableWidgetItem(QString::fromStdString(name)));
-        stringstream ss; string s;
-        ss << vrooms[i][j].numR;
-        ss >> s;
-        table->setItem(j - 1, 1, new QTableWidgetItem(QString::fromStdString(s)));
-        ss.clear();
-        ss << vrooms[i][j].price;
-        ss >> s;
-        table->setItem(j - 1, 2, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
-        table->setItem(j - 1, 3, new QTableWidgetItem(QString::fromStdString(vrooms[i][j].type)));
-        for(int k = 0; k < 4; ++k) table->item(j - 1,k)->setTextAlignment(Qt::AlignCenter);
-    }
-    table->resizeColumnToContents(0);
-}
 
-void RoomsUserui::orderRoom(QTableWidgetItem *item){
-    uColumn = item->row() + 1;
-    Ordering oding;
-    oding.exec();
 }
-
