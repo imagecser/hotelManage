@@ -16,6 +16,7 @@ SearchRooms::SearchRooms(QWidget *parent) :
     ui(new Ui::SearchRooms)
 {
     ui->setupUi(this);
+    this->setFixedSize(880, 460);
     qDebug() << QString::fromStdString(keyword);
     connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(orderRoom(QTableWidgetItem*)));
     buildTable();

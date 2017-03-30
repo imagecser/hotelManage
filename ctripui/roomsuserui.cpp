@@ -5,6 +5,7 @@ RoomsUserui::RoomsUserui(QWidget *parent) :
     ui(new Ui::RoomsUserui)
 {
     ui->setupUi(this);
+    this->setFixedSize(640, 450);
     uRow = getVecRow(uRow);
     connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(orderRoom(QTableWidgetItem*)));
     buildTable();

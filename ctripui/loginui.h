@@ -4,6 +4,9 @@
 #include <QtWidgets\qdialog.h>
 #include "mainn.h"
 #include "userui.h"
+#include "ui_userui.h"
+#include "../code/signiu.h"
+#include "../code/chotel.h"
 
 namespace Ui {
 class loginui;
@@ -18,12 +21,12 @@ public:
     ~loginui();
 
 private slots:
-    void adminTemp();
-    void userTemp();
+    void login();
+    void exit();
 
 private:
     Ui::loginui *ui;
-
+    Sign sg;
 };
 
 #endif // LOGINUI_H

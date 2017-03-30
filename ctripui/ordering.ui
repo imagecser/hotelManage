@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>410</width>
-    <height>331</height>
+    <height>330</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,6 +44,9 @@
    <property name="text">
     <string>OK</string>
    </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="rejectedBtn">
    <property name="geometry">
@@ -58,7 +61,7 @@
     <string>Cancel</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -78,7 +81,15 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="beginDate"/>
+       <widget class="QDateEdit" name="beginDate">
+        <property name="date">
+         <date>
+          <year>2017</year>
+          <month>3</month>
+          <day>31</day>
+         </date>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -92,13 +103,21 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="endDate"/>
+       <widget class="QDateEdit" name="endDate">
+        <property name="date">
+         <date>
+          <year>2017</year>
+          <month>3</month>
+          <day>31</day>
+         </date>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>70</x>

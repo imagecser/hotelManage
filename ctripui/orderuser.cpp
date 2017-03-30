@@ -5,6 +5,7 @@ OrderUser::OrderUser(QWidget *parent) :
     ui(new Ui::OrderUser)
 {
     ui->setupUi(this);
+    this->setFixedSize(930, 465);
     buildTable();
     connect(ui->saveBtn, SIGNAL(clicked()), this, SLOT(save()));
 }

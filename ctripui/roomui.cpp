@@ -6,6 +6,7 @@ Roomui::Roomui(QWidget *parent) :
     ui(new Ui::Roomui)
 {
     ui->setupUi(this);
+    this->setFixedSize(630, 470);
     itemp = iRow;
     iRow = getVecRow(iRow);
     buildTable();

@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>453</height>
+    <width>700</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="image.qrc">
+    <normaloff>:/image.ico</normaloff>:/image.ico</iconset>
   </property>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
@@ -39,15 +43,21 @@
     </font>
    </property>
    <property name="text">
-    <string>orders</string>
+    <string>&amp;orders</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="saveBtn">
    <property name="geometry">
     <rect>
-     <x>600</x>
+     <x>590</x>
      <y>400</y>
-     <width>71</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -58,10 +68,18 @@
     </font>
    </property>
    <property name="text">
-    <string>save</string>
+    <string>&amp;save</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+   <property name="default">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="image.qrc"/>
+ </resources>
  <connections/>
 </ui>

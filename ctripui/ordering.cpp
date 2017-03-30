@@ -8,6 +8,7 @@ Ordering::Ordering(QWidget *parent) :
     ui(new Ui::Ordering)
 {
     ui->setupUi(this);
+    this->setFixedSize(410, 330);
     connect(ui->acceptedBtn, SIGNAL(clicked()), this, SLOT(dataUpdate()));
     connect(ui->rejectedBtn, SIGNAL(clicked()), this, SLOT(quitW()));
 }

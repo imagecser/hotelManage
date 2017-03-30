@@ -7,8 +7,15 @@ loginui::loginui(QWidget *parent) :
     ui(new Ui::loginui)
 {
     ui->setupUi(this);
-    connect(ui->adminTemp, SIGNAL(clicked()), this, SLOT(adminTemp()));
-    connect(ui->userTemp, SIGNAL(clicked()), this, SLOT(userTemp()));
+    this->setWindowIcon(QIcon("img.ico"));
+    this->setFixedSize(400, 300);
+    this->setTabOrder(ui->usernameLine, ui->passwordLine);
+    this->setTabOrder(ui->passwordLine, ui->userRadio);
+    this->setTabOrder(ui->userRadio, ui->loginBtn);
+    this->setTabOrder(ui->loginBtn, ui->exitBtn);
+    ui->passwordLine->setEchoMode(QLineEdit::Password);
+    connect(ui->loginBtn, SIGNAL(clicked()), this, SLOT(login()));
+    connect(ui->exitBtn, SIGNAL(clicked()), this, SLOT(exit()));
 }
 
 loginui::~loginui()
@@ -17,14 +24,29 @@ loginui::~loginui()
 }
 
 
-void loginui::adminTemp(){
-    this->close();
-    Mainn m;
-    m.exec();
+void loginui::login(){
+    username = ui->usernameLine->text().toStdString();
+    password = ui->passwordLine->text().toStdString();
+    if(ui->adminRadio->isChecked() == true){
+        if(sg.isAdmin() == true){
+            Mainn m;
+            this->close();
+            m.exec();
+        }
+        else
+            QMessageBox::warning(NULL, " ", "Incorrect username or password.", QMessageBox::Ok|QMessageBox::Ok, QMessageBox::Ok);
+    }
+    else{
+        if(sg.isUser() == true){
+            Userui us;
+            this->close();
+            us.exec();
+        }
+        else
+            QMessageBox::about(NULL, " ", "Incorrect username or password.");
+    }
 }
 
-void loginui::userTemp(){
+void loginui::exit(){
     this->close();
-    Userui u;
-    u.exec();
 }

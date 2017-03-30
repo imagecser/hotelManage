@@ -1,7 +1,8 @@
 ﻿#pragma once
 #include "chotel.h"
 class Sign {
-	Sign & signup();
-	Sign & signin();
+public:
+    bool isAdmin();
+    bool isUser();
     bool identified(string username, string password);
 };

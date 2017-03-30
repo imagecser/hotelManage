@@ -6,6 +6,7 @@ Userui::Userui(QWidget *parent) :
     ui(new Ui::Userui)
 {
     ui->setupUi(this);
+    this->setFixedSize(680, 430);
     buildTable();
     connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(viewRooms(QTableWidgetItem*)));
     connect(ui->orderBtn, SIGNAL(clicked()), this, SLOT(viewOrders()));

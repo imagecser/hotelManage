@@ -69,10 +69,19 @@ FORMS    += \
     orderuser.ui \
     searchrooms.ui
 
+RC_FILE = img.rc
+
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TARGET = test
+TARGET = icTRIP
 TEMPLATE = app
 SOURCES += main.cpp
 HEADERS  +=
 FORMS    +=
+
+DISTFILES += \
+    img.ico
+
+RESOURCES += \
+    img.qrc
+

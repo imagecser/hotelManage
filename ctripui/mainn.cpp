@@ -10,6 +10,8 @@ Mainn::Mainn(QWidget *parent) :
     setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
     //setFixedSize(this->width(), this->height());
     ui->setupUi(this);
+    this->setFixedSize(700, 450);
+    this->setTabOrder(ui->saveBtn, ui->orderBtn);
     //connect(ui->indexEdit, SIGNAL(textChanged(QString)), this, );
     //tconnect(ui->roomBtn, SIGNAL(pressed()), r, SLOT(changeBtn()));
     buildTable();

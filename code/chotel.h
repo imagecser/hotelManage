@@ -26,6 +26,8 @@ extern int iRow;
 extern int uRow;
 extern int uColumn;
 extern int itemp;
+extern string username;
+extern string password;
 
 
 struct Hotel {

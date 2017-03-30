@@ -5,6 +5,7 @@ Orderui::Orderui(QWidget *parent) :
     ui(new Ui::Orderui)
 {
     ui->setupUi(this);
+    this->setFixedSize(950, 440);
     buildTable();
 }
 

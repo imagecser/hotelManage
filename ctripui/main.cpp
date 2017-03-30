@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     f.finput();
     f.odinput();
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon("img.ico"));
     //w.show();
     QApplication::setQuitOnLastWindowClosed(true);
     loginui l;
