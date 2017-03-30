@@ -63,7 +63,7 @@ void OrderUser::showGrid(){
             //table->setItem(k, 1, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->city)));
             //table->setItem(k, 2, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->name)));
             //table->setItem(k, 3, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->area)));
-            int m = vorders[i].ppr / 100, n = vorders[i].ppr % 100;
+            int m = vorders[i].ppr / 1000, n = vorders[i].ppr % 1000;
             ss << vrooms[m][n].numR; ss >> s;
             //ss << vorders[i].proom->numR; ss >> s;
             table->setItem(k, 4, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();

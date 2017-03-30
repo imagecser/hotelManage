@@ -23,7 +23,7 @@ void ManageInfo::addHotel() {
     vector<Room> *pvr = new vector<Room>;
     pvr->push_back(*pr);
     vrooms.push_back(*pvr);
-    mmap[(vrooms.size() - 1) * 100] = &vhotels[vhotels.size() - 1];
+    mmap[(vrooms.size() - 1) * 1000] = &vhotels[vhotels.size() - 1];
     //mmap[&vrooms[vrooms.size() - 1][0]] = &vhotels[vhotels.size() - 1];
     qDebug() << vhotels.size();
 	// TODO: 添加酒店信息
@@ -47,7 +47,7 @@ void ManageInfo::addRoom() {
     qDebug() << vrooms[iRow].size();
     r->indexH = vhotels[itemp].indexH;
     vrooms[iRow].push_back(*r);
-    mmap[iRow * 100 + vrooms[iRow].size() - 1] = &vhotels[itemp];
+    mmap[iRow * 1000 + vrooms[iRow].size() - 1] = &vhotels[itemp];
     //mmap[&vrooms[iRow][vrooms[iRow].size() - 1]] = &vhotels[itemp];
     //vrooms[iRow][vrooms[iRow].size() - 1].indexH = vhotels[itemp].indexH;
     //xsortHotel();

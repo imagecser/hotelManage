@@ -74,7 +74,7 @@ void SearchRooms::showData(){
                 table->insertRow(table->rowCount());
                 int row = table->rowCount() - 1;
                 stringstream ss; string s;
-                table->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(mmap.find(i * 100 + j)->second->name)));
+                table->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(mmap.find(i * 1000 + j)->second->name)));
                 ss << vrooms[i][j].numR; ss >> s;
                 table->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
                 ss << vrooms[i][j].price; ss >> s;

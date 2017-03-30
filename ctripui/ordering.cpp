@@ -27,8 +27,9 @@ void Ordering::dataUpdate(){
     od->date[5] = ui->endDate->date().day();
     od->uname = ui->nameEdit->text().toStdString();
     od->idcard = ui->cardEdit->text().toStdString();
-    od->orderIndex = vorders[vorders.size() - 1].orderIndex;
-    od->ppr = uRow * 100 + uColumn;
+    od->orderIndex = vorders[vorders.size() - 1].orderIndex + 1;
+    od->ppr = uRow * 1000 + uColumn;
+    od->user = "image";
     //od->proom = &vrooms[uRow][uColumn];
     int bbeg = od->date[0] * 10000 + od->date[1] * 100 + od->date[2];
     int bend = od->date[3] * 10000 + od->date[4] * 100 + od->date[5];
@@ -44,7 +45,7 @@ void Ordering::dataUpdate(){
     }
     for(int i = 0; i < vorders.size(); ++i){
         //qDebug() << vorders[i].proom->numR << vrooms[uRow][uColumn].numR << mmap.find(vorders[i].proom)->second->indexH << vhotels[uRow].indexH;
-        int m = vorders[i].ppr / 100, n = vorders[i].ppr % 100;
+        int m = vorders[i].ppr / 1000, n = vorders[i].ppr % 1000;
         if(vrooms[m][n].numR == vrooms[uRow][uColumn].numR )
         //if(vorders[i].proom->numR == vrooms[uRow][uColumn].numR )
             if(mmap.find(vorders[i].ppr)->second->indexH == vhotels[uRow].indexH){
@@ -56,7 +57,7 @@ void Ordering::dataUpdate(){
                 }
             }
     }
-    int m = od->ppr / 100, n = od->ppr % 100;
+    int m = od->ppr / 1000, n = od->ppr % 1000;
     vrooms[m][n].ordered = true;
     //od->proom->ordered = true;
     mmap.find(od->ppr)->second->ordered = true;

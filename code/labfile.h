@@ -37,7 +37,7 @@ struct lessRoom{
             if(vrooms[bi][0].indexH == b[0].indexH)
                 break;
         //return a[0].photel->indexH < b[0].photel->indexH;
-        return mmap.find(ai * 100)->second->indexH < mmap.find(bi * 100)->second->indexH;
+        return mmap.find(ai * 1000)->second->indexH < mmap.find(bi * 1000)->second->indexH;
         //return mmap.find(&a[0])->second->indexH < mmap.find(&b[0])->second->indexH;
     }
 };
