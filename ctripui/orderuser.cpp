@@ -57,12 +57,18 @@ void OrderUser::showGrid(){
             stringstream ss; string s;
             ss << setfill('0') << setw(6) << vorders[i].orderIndex; ss >> s;
             table->setItem(k, 0, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
-            table->setItem(k, 1, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->city)));
-            table->setItem(k, 2, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->name)));
-            table->setItem(k, 3, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->area)));
-            ss << vorders[i].proom->numR; ss >> s;
+            table->setItem(k, 1, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].ppr)->second->city)));
+            table->setItem(k, 2, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].ppr)->second->name)));
+            table->setItem(k, 3, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].ppr)->second->area)));
+            //table->setItem(k, 1, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->city)));
+            //table->setItem(k, 2, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->name)));
+            //table->setItem(k, 3, new QTableWidgetItem(QString::fromStdString(mmap.find(vorders[i].proom)->second->area)));
+            int m = vorders[i].ppr / 100, n = vorders[i].ppr % 100;
+            ss << vrooms[m][n].numR; ss >> s;
+            //ss << vorders[i].proom->numR; ss >> s;
             table->setItem(k, 4, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
-            table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vorders[i].proom->type)));
+            table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vrooms[m][n].type)));
+            //table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vorders[i].proom->type)));
             for(int j = 0; j < 6; ++j) table->item(k, j)->setTextAlignment(Qt::AlignCenter);
             ++k;
         }

@@ -17,8 +17,11 @@ bool daterep(int a[6], int b[6]){
 
 bool UserInfo::del(int i){
     if(vorders.size() > 0){
-        vorders[i].proom->ordered = false;
-        mmap.find(vorders[i].proom)->second->ordered = false;
+        int m = vorders[i].ppr / 100, n = vorders[i].ppr % 100;
+        vrooms[m][n].ordered = false;
+        //vorders[i].proom->ordered = false;
+        mmap.find(vorders[i].ppr)->second->ordered = false;
+        //mmap.find(vorders[i].proom)->second->ordered = false;
         vorders.erase(vorders.begin() + i);
         return true;
     }

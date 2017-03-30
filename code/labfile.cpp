@@ -42,7 +42,8 @@ fstream & fio::finput() {
         //sort(vhotels.begin(), vhotels.end(), lessHotel());
         for(int i = 0; i < vrooms.size(); ++i){
             for(int j = 0; j < vrooms[i].size(); ++j){
-                mmap[&vrooms[i][j]] = &vhotels[i];
+                mmap[i * 100 + j] = &vhotels[i];
+                //mmap[&vrooms[i][j]] = &vhotels[i];
             }
         }
         //sort(vrooms.begin(), vrooms.end(), lessRoom());
@@ -57,7 +58,7 @@ fstream & fio::fsave() {
 	for (unsigned int i = 0; i < vhotels.size(); ++i) {
 		f << setfill('0') << setw(4) << vhotels[i].indexH;
 		f << ',' << vhotels[i].name << ',' << vhotels[i].city << ',' << vhotels[i].area << '|';
-        qDebug() << mmap.find(&vrooms[4][0])->second->indexH;
+        //qDebug() << mmap.find(&vrooms[4][0])->second->indexH;
         int pi = getVecRow(i);
         for (unsigned int j = 1; j < vrooms[pi].size(); ++j)
             f << vrooms[pi][j].numR << ',' << vrooms[pi][j].price << ',' << vrooms[pi][j].type << '|';
@@ -86,10 +87,14 @@ fstream & fio::odinput() {
         ps << sIndex; ps >> numarg; ps.clear();
         for(int i = 0; i < vrooms.size(); ++i)
             for(int j = 1; j < vrooms[i].size(); ++j){
-                if(numarg == vrooms[i][j].numR && indexag == mmap.find(&vrooms[i][j])->second->indexH){
-                    od->proom = &vrooms[i][j];
-                    od->proom->ordered = true;
-                    mmap.find(od->proom)->second->ordered = true;
+                if(numarg == vrooms[i][j].numR && indexag == mmap.find(i * 100 + j)->second->indexH){
+                //if(numarg == vrooms[i][j].numR && indexag == mmap.find(&vrooms[i][j])->second->indexH){
+                    //od->proom = &vrooms[i][j];
+                    vrooms[i][j].ordered = true;
+                    od->ppr = i * 100 + j;
+                    //od->proom->ordered = true;
+                    mmap.find(od->ppr)->second->ordered = true;
+                    //mmap.find(od->proom)->second->ordered = true;
                 }
             }
 		string pstr[6];
@@ -112,8 +117,10 @@ fstream & fio::odsave() {
     qDebug() << vorders.size();
     for (int i = 0; i < vorders.size(); ++i) {
         f << setfill('0') << setw(6) << vorders[i].orderIndex;
-        f << ',' << setfill('0') << setw(4) << mmap.find(vorders[i].proom)->second->indexH;
-        f << ',' << vorders[i].proom->numR << '|';
+        f << ',' << setfill('0') << setw(4) << mmap.find(vorders[i].ppr)->second->indexH;
+        //f << ',' << setfill('0') << setw(4) << mmap.find(vorders[i].proom)->second->indexH;
+        int m = vorders[i].ppr / 100, n = vorders[i].ppr % 100;
+        f << ',' << vrooms[m][n].numR << '|';
         for (int j = 0; j < 6; ++j)
             f << vorders[i].date[j] << '/';
         f << vorders[i].uname << '|' << vorders[i].idcard << '|' << vorders[i].user << '|';
@@ -129,11 +136,13 @@ void sortHotel(){
     //    qDebug() << vrooms[i][0].indexH << ' ' << vrooms[i][0].photel->indexH;
     sort(vhotels.begin(), vhotels.end(), lessHotel());
     for(int i = 0; i < vrooms.size(); ++i){
-        if(vrooms[i][0].indexH != mmap.find(&vrooms[i][0])->second->indexH){
+        if(vrooms[i][0].indexH != mmap.find(i * 100)->second->indexH){
+        //if(vrooms[i][0].indexH != mmap.find(&vrooms[i][0])->second->indexH){
             for(int m = 0; m < vhotels.size(); ++m){
                 if(vrooms[i][0].indexH == vhotels[m].indexH){
                     for(int j = 0; j < vrooms[i].size(); ++j)
-                        mmap[&vrooms[i][j]] = &vhotels[m];
+                        mmap[i * 100 + j] = &vhotels[m];
+                        //mmap[&vrooms[i][j]] = &vhotels[m];
                     //qDebug() << i << m << vrooms[i][0].indexH << mmap.find(&vrooms[i][0])->second->indexH;
                 }
             }
@@ -145,7 +154,8 @@ void sortHotel(){
 
 int getVecRow(int row){
     for(int i = 0; i < vrooms.size(); ++i){
-        if(mmap.find(&vrooms[i][0])->second == &vhotels[row]){
+        if(mmap.find(100 * i)->second == &vhotels[row]){
+        //if(mmap.find(&vrooms[i][0])->second == &vhotels[row]){
             return i;
         }
     }

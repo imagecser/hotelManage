@@ -28,23 +28,27 @@ void Ordering::dataUpdate(){
     od->uname = ui->nameEdit->text().toStdString();
     od->idcard = ui->cardEdit->text().toStdString();
     od->orderIndex = vorders[vorders.size() - 1].orderIndex;
-    od->proom = &vrooms[uRow][uColumn];
+    od->ppr = uRow * 100 + uColumn;
+    //od->proom = &vrooms[uRow][uColumn];
+    int bbeg = od->date[0] * 10000 + od->date[1] * 100 + od->date[2];
+    int bend = od->date[3] * 10000 + od->date[4] * 100 + od->date[5];
+    if(bbeg > bend){
+        QMessageBox::critical(NULL, "error", "date input error!", QMessageBox::Ok | QMessageBox::Ok, QMessageBox::Ok);
+        delete od;
+        return;
+    }
     if(judgeIDcard(od->idcard) == false || od->uname.size() == 0){
             QMessageBox::critical(NULL, "error", "IDcard/name input error!", QMessageBox::Ok | QMessageBox::Ok, QMessageBox::Ok);
             delete od;
             return;
     }
     for(int i = 0; i < vorders.size(); ++i){
-        qDebug() << vorders[i].proom->numR << vrooms[uRow][uColumn].numR << mmap.find(vorders[i].proom)->second->indexH << vhotels[uRow].indexH;
-        if(vorders[i].proom->numR == vrooms[uRow][uColumn].numR )
-            if(mmap.find(vorders[i].proom)->second->indexH == vhotels[uRow].indexH){
-                int bbeg = od->date[0] * 10000 + od->date[1] * 100 + od->date[2];
-                int bend = od->date[3] * 10000 + od->date[4] * 100 + od->date[5];
-                if(bbeg > bend){
-                    QMessageBox::critical(NULL, "error", "date input error!", QMessageBox::Ok | QMessageBox::Ok, QMessageBox::Ok);
-                    delete od;
-                    return;
-                }
+        //qDebug() << vorders[i].proom->numR << vrooms[uRow][uColumn].numR << mmap.find(vorders[i].proom)->second->indexH << vhotels[uRow].indexH;
+        int m = vorders[i].ppr / 100, n = vorders[i].ppr % 100;
+        if(vrooms[m][n].numR == vrooms[uRow][uColumn].numR )
+        //if(vorders[i].proom->numR == vrooms[uRow][uColumn].numR )
+            if(mmap.find(vorders[i].ppr)->second->indexH == vhotels[uRow].indexH){
+            //if(mmap.find(vorders[i].proom)->second->indexH == vhotels[uRow].indexH){
                 if(daterep(vorders[i].date, od->date) == true){
                     QMessageBox::critical(NULL, "error", "date ordered!", QMessageBox::Ok | QMessageBox::Ok, QMessageBox::Ok);
                     delete od;
@@ -52,8 +56,11 @@ void Ordering::dataUpdate(){
                 }
             }
     }
-    od->proom->ordered = true;
-    mmap.find(od->proom)->second->ordered = true;
+    int m = od->ppr / 100, n = od->ppr % 100;
+    vrooms[m][n].ordered = true;
+    //od->proom->ordered = true;
+    mmap.find(od->ppr)->second->ordered = true;
+    //mmap.find(od->proom)->second->ordered = true;
     vorders.push_back(*od);
     QMessageBox::about(NULL, "ordered", "order accepted!");
     this->close();

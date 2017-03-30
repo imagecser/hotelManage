@@ -45,8 +45,9 @@ void Userui::buildTable(){
 }
 
 void Userui::showGrid(){
-    sort(vhotels.begin(), vhotels.end(), lessHotel());
-    sort(vrooms.begin(), vrooms.end(), lessRoom());
+    //sort(vhotels.begin(), vhotels.end(), lessHotel());
+    //sort(vrooms.begin(), vrooms.end(), lessRoom());
+    sortHotel();
     auto *table = ui->tableWidget;
     QStringList header;
     table->setColumnCount(4);

@@ -20,7 +20,7 @@ struct Hotel;
 extern vector<vector<Room>> vrooms;
 extern vector<Hotel> vhotels;
 extern vector<Order> vorders;
-extern map<Room*, Hotel*> mmap;
+extern map<int, Hotel*> mmap;
 
 extern int iRow;
 extern int uRow;
@@ -51,6 +51,7 @@ struct Order {
 	string uname;
 	int date[6];
 	Room *proom;
+    int ppr;
 	string idcard;
     string user;
 };

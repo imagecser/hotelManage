@@ -15,7 +15,7 @@ int itemp;
 int iRow;
 int uRow;
 int uColumn;
-map<Room*, Hotel*> mmap;
+map<int, Hotel*> mmap;
 
 
 /*
