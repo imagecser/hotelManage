@@ -3,7 +3,7 @@
 bool judgeNum(string str);
 
 void ManageInfo::addHotel() {
-    qDebug() << vhotels.size();
+    //qDebug() << vhotels.size();
     Hotel *h = new Hotel;
     if(vhotels.size() > 0)
         h->indexH = vhotels[vhotels.size() - 1].indexH + 1;

@@ -22,11 +22,13 @@ public:
     ~SearchRooms();
     void buildTable();
     void showGrid();
+    void showData();
+    bool algo(Room dest);
 
 private:
     Ui::SearchRooms *ui;
 };
 
-
+extern string keyword;
 
 #endif // SEARCHROOMS_H

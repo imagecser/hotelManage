@@ -80,6 +80,11 @@ void Userui::viewOrders(){
 }
 
 void Userui::search(){
-    SearchRooms sr;
-    sr.exec();
+    keyword = ui->lineEdit->text().toStdString();
+    if(keyword.size() != 0){
+        SearchRooms sr;
+        sr.exec();
+    }
+    else
+        QMessageBox::warning(NULL, "error", "Keyword input error!", QMessageBox::Ok|QMessageBox::Ok, QMessageBox::Ok);
 }
