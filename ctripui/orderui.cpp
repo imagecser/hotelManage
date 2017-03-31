@@ -6,7 +6,7 @@ Orderui::Orderui(QWidget *parent) :
 {
     this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
-    this->setFixedSize(950, 440);
+    this->setFixedSize(1150, 440);
     buildTable();
 }
 
@@ -47,9 +47,9 @@ void Orderui::showGrid(){
     sort(vorders.begin(), vorders.end(), lessOrder());
     auto *table = ui->tableWidget;
     QStringList header;
-    table->setColumnCount(7);
+    table->setColumnCount(8);
     //table->setRowCount((int)vorders.size());
-    header << "index" << "city" << "name" << "area" <<"key" << "type" << "user";
+    header << "index" << "city" << "name" << "area" <<"key" << "type" << "time" << "user";
     table->setHorizontalHeaderLabels(header);
     for(int i = 0, k = 0; i < vorders.size();++i){
             table->setRowCount(table->rowCount() + 1);
@@ -67,11 +67,15 @@ void Orderui::showGrid(){
             //ss << vorders[i].proom->numR; ss >> s;
             table->setItem(k, 4, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
             table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vrooms[m][n].type)));
-            table->setItem(k, 6, new QTableWidgetItem(QString::fromStdString(vorders[i].user)));
+            ss << vorders[i].date[0] << "-" << vorders[i].date[1] << "-" << vorders[i].date[2] << "..." <<vorders[i].date[3] << "-" << vorders[i].date[4] << "-" << vorders[i].date[5];
+            ss >> s;
+            table->setItem(k, 6, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
+            table->setItem(k, 7, new QTableWidgetItem(QString::fromStdString(vorders[i].user)));
             //table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vorders[i].proom->type)));
-            for(int j = 0; j < 7; ++j) table->item(k, j)->setTextAlignment(Qt::AlignCenter);
+            for(int j = 0; j < 8; ++j) table->item(k, j)->setTextAlignment(Qt::AlignCenter);
             ++k;
     }
     //for(int i = 0; i < table->rowCount(); ++i) table->item(i, 0)->setFlags(Qt::NoItemFlags);
     table->resizeColumnToContents(2);
+    table->resizeColumnToContents(6);
 }

@@ -75,7 +75,7 @@ void loginui::signup(){
         up->username = username;
         vaccs.push_back(*up);
         f.pswsave();
-        QMessageBox::about(NULL, "signed up!", ("Your account information:\n \tusername: " + QString::fromStdString(up->username) + "\n \tpassword: " + QString::fromStdString(up->password)));
+        QMessageBox::about(NULL, "signed up!", ("Your account information:\n\n username: " + QString::fromStdString(up->username) + "\n password: " + QString::fromStdString(up->password)));
         Userui us;
         this->close();
         us.exec();
@@ -84,6 +84,7 @@ void loginui::signup(){
 
 
 void loginui::help(){
-    string s = "md/readme.html";
-    QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(s)).absoluteFilePath()));
+    //string s = "md/readme.html";
+    //QDesktopServices::openUrl(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(s)).absoluteFilePath()));
+    QDesktopServices::openUrl(QUrl("http://smeug.nju.edu.cn/xgc/md/readme.html"));
 }

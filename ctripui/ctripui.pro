@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     roomsuserui.cpp \
     ordering.cpp \
     orderuser.cpp \
-    searchrooms.cpp
+    searchrooms.cpp \
+    uppwd.cpp
 
 HEADERS  += \
     loginui.h \
@@ -56,7 +57,8 @@ HEADERS  += \
     roomsuserui.h \
     ordering.h \
     orderuser.h \
-    searchrooms.h
+    searchrooms.h \
+    uppwd.h
 
 FORMS    += \
     loginui.ui \
@@ -67,13 +69,14 @@ FORMS    += \
     roomsuserui.ui \
     ordering.ui \
     orderuser.ui \
-    searchrooms.ui
+    searchrooms.ui \
+    uppwd.ui
 
 RC_FILE = img.rc
 
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TARGET = icTRIP
+TARGET = icTrip
 TEMPLATE = app
 SOURCES += main.cpp
 HEADERS  +=

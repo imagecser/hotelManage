@@ -4,7 +4,6 @@
 #include "../code/chotel.h"
 #include "../code/labfile.h"
 #include <QTextCodec>
-#include "dialog.h"
 int main(int argc, char *argv[])
 {
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("GB2312"));

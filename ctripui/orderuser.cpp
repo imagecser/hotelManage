@@ -48,9 +48,9 @@ void OrderUser::showGrid(){
     sort(vorders.begin(), vorders.end(), lessOrder());
     auto *table = ui->tableWidget;
     QStringList header;
-    table->setColumnCount(6);
+    table->setColumnCount(7);
     //table->setRowCount((int)vorders.size());
-    header << "index" << "city" << "name" << "area" <<"key" << "type";
+    header << "index" << "city" << "name" << "area" <<"key" << "type" << "time";
     table->setHorizontalHeaderLabels(header);
     for(int i = 0, k = 0; i < vorders.size();++i){
         qDebug() << QString::fromStdString(vorders[i].user)  ;
@@ -70,6 +70,9 @@ void OrderUser::showGrid(){
             //ss << vorders[i].proom->numR; ss >> s;
             table->setItem(k, 4, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
             table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vrooms[m][n].type)));
+            ss << vorders[i].date[0] << "-" << vorders[i].date[1] << "-" << vorders[i].date[2] << "..." <<vorders[i].date[3] << "-" << vorders[i].date[4] << "-" << vorders[i].date[5];
+            ss >> s;
+            table->setItem(k, 6, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
             //table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vorders[i].proom->type)));
             for(int j = 0; j < 6; ++j) table->item(k, j)->setTextAlignment(Qt::AlignCenter);
             ++k;
@@ -77,6 +80,7 @@ void OrderUser::showGrid(){
     }
     for(int i = 0; i < table->rowCount(); ++i) table->item(i, 0)->setFlags(Qt::NoItemFlags);
     table->resizeColumnToContents(2);
+    table->resizeColumnToContents(6);
     table->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(table, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ShowContextMenu(QPoint)));
 }
