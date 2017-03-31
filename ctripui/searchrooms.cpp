@@ -15,6 +15,7 @@ SearchRooms::SearchRooms(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchRooms)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
     this->setFixedSize(880, 460);
     qDebug() << QString::fromStdString(keyword);

@@ -7,6 +7,7 @@ Ordering::Ordering(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Ordering)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
     this->setFixedSize(410, 330);
     connect(ui->acceptedBtn, SIGNAL(clicked()), this, SLOT(dataUpdate()));
@@ -30,7 +31,7 @@ void Ordering::dataUpdate(){
     od->idcard = ui->cardEdit->text().toStdString();
     od->orderIndex = vorders[vorders.size() - 1].orderIndex + 1;
     od->ppr = uRow * 1000 + uColumn;
-    od->user = "image";
+    od->user = username;
     //od->proom = &vrooms[uRow][uColumn];
     int bbeg = od->date[0] * 10000 + od->date[1] * 100 + od->date[2];
     int bend = od->date[3] * 10000 + od->date[4] * 100 + od->date[5];

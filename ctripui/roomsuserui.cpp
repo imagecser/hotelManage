@@ -4,6 +4,7 @@ RoomsUserui::RoomsUserui(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RoomsUserui)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
     this->setFixedSize(640, 450);
     uRow = getVecRow(uRow);

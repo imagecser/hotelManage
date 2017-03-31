@@ -10,6 +10,9 @@
 #include <iomanip>
 #include <assert.h>
 #include <ctype.h>
+#include <QDesktopServices>
+#include <QFileInfo>
+#include <QUrl>
 using namespace std;
 #define INFINE
 #endif // !INFILE
@@ -17,9 +20,11 @@ using namespace std;
 struct Room;
 struct Order;
 struct Hotel;
+struct Upsw;
 extern vector<vector<Room>> vrooms;
 extern vector<Hotel> vhotels;
 extern vector<Order> vorders;
+extern vector<Upsw> vaccs;
 extern map<int, Hotel*> mmap;
 
 extern int iRow;
@@ -78,4 +83,3 @@ struct Order:public Room {
 	Order & operator=(Room & r);
 };
 */
-

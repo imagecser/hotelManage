@@ -32,6 +32,7 @@ private:
 private slots:
     void getItemChanged(QTableWidgetItem *item);
     void ShowContextMenu(const QPoint& pos);
+    void returnsg();
     void deleteRow();
     void addRow();
     void viewRooms();

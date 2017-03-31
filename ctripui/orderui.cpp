@@ -4,6 +4,7 @@ Orderui::Orderui(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Orderui)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
     this->setFixedSize(950, 440);
     buildTable();
@@ -46,12 +47,11 @@ void Orderui::showGrid(){
     sort(vorders.begin(), vorders.end(), lessOrder());
     auto *table = ui->tableWidget;
     QStringList header;
-    table->setColumnCount(6);
+    table->setColumnCount(7);
     //table->setRowCount((int)vorders.size());
-    header << "index" << "city" << "name" << "area" <<"key" << "type";
+    header << "index" << "city" << "name" << "area" <<"key" << "type" << "user";
     table->setHorizontalHeaderLabels(header);
     for(int i = 0, k = 0; i < vorders.size();++i){
-        if(vorders[i].user == "image"){
             table->setRowCount(table->rowCount() + 1);
             stringstream ss; string s;
             ss << setfill('0') << setw(6) << vorders[i].orderIndex; ss >> s;
@@ -67,11 +67,11 @@ void Orderui::showGrid(){
             //ss << vorders[i].proom->numR; ss >> s;
             table->setItem(k, 4, new QTableWidgetItem(QString::fromStdString(s))); ss.clear();
             table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vrooms[m][n].type)));
+            table->setItem(k, 6, new QTableWidgetItem(QString::fromStdString(vorders[i].user)));
             //table->setItem(k, 5, new QTableWidgetItem(QString::fromStdString(vorders[i].proom->type)));
-            for(int j = 0; j < 6; ++j) table->item(k, j)->setTextAlignment(Qt::AlignCenter);
+            for(int j = 0; j < 7; ++j) table->item(k, j)->setTextAlignment(Qt::AlignCenter);
             ++k;
-        }
     }
-    for(int i = 0; i < table->rowCount(); ++i) table->item(i, 0)->setFlags(Qt::NoItemFlags);
+    //for(int i = 0; i < table->rowCount(); ++i) table->item(i, 0)->setFlags(Qt::NoItemFlags);
     table->resizeColumnToContents(2);
 }

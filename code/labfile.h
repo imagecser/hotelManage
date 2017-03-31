@@ -16,7 +16,7 @@ public:
 	fstream & odinput();
 	fstream & odsave();
 	fstream & pswinput();
-	fstream & pswsave();
+    fstream & pswsave();
 };
 
 

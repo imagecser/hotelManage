@@ -2,16 +2,20 @@
 #include "roomui.h"
 #include "orderui.h"
 #include "ui_Mainn.h"
+#include "loginui.h"
 
 Mainn::Mainn(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Mainn)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
     //setFixedSize(this->width(), this->height());
     ui->setupUi(this);
     this->setFixedSize(700, 450);
     this->setTabOrder(ui->saveBtn, ui->orderBtn);
+    ui->label->setText(QString::fromStdString("username: " + username));
+    connect(ui->returnBtn, SIGNAL(clicked()), this, SLOT(returnsg()));
     //connect(ui->indexEdit, SIGNAL(textChanged(QString)), this, );
     //tconnect(ui->roomBtn, SIGNAL(pressed()), r, SLOT(changeBtn()));
     buildTable();
@@ -149,4 +153,10 @@ void Mainn::viewRooms(){
 void Mainn::viewOrders(){
     Orderui o;
     o.exec();
+}
+
+void Mainn::returnsg(){
+    this->close();
+    loginui l;
+    l.exec();
 }

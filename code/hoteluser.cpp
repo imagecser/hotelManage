@@ -16,13 +16,20 @@ bool daterep(int a[6], int b[6]){
 }
 
 bool UserInfo::del(int i){
+    int k = 0;
+    for(int j = 0; k < vorders.size(); ++k){
+        if(vorders[k].user == username){
+            if(j == i) break;
+            ++j;
+        }
+    }
     if(vorders.size() > 0){
         int m = vorders[i].ppr / 1000, n = vorders[i].ppr % 1000;
         vrooms[m][n].ordered = false;
         //vorders[i].proom->ordered = false;
         mmap.find(vorders[i].ppr)->second->ordered = false;
         //mmap.find(vorders[i].proom)->second->ordered = false;
-        vorders.erase(vorders.begin() + i);
+        vorders.erase(vorders.begin() + k);
         return true;
     }
     return false;

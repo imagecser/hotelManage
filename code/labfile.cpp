@@ -160,3 +160,33 @@ int getVecRow(int row){
         }
     }
 }
+
+fstream & fio::pswinput(){
+    f.open("pwd.txt", ios::in);
+    while(f){
+        stringstream ss;
+        string line, pack;
+        getline(f, line);
+        if(line.size() == 0) break;
+        Upsw *up = new Upsw;
+        ss << line;
+        getline(ss, pack, ',');
+        up->username = pack;
+        getline(ss, pack);
+        up->password = pack;
+        vaccs.push_back(*up);
+        qDebug() << vaccs.size();
+        ss.clear();
+    }
+    for(int i = 0; i < vaccs.size(); ++i){
+        qDebug() << QString::fromStdString(vaccs[i].username) << QString::fromStdString(vaccs[i].password);
+    }
+    return f;
+}
+
+fstream & fio::pswsave(){
+    f.open("pwd.txt", ios::out);
+    for(int i = 0; i < vaccs.size(); ++i)
+        f << vaccs[i].username << ',' << vaccs[i].password << endl;
+    return f;
+}

@@ -5,6 +5,7 @@ Roomui::Roomui(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Roomui)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
     this->setFixedSize(630, 470);
     itemp = iRow;

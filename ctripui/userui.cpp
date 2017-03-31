@@ -1,16 +1,21 @@
 #include "userui.h"
 #include "roomsuserui.h"
+#include "loginui.h"
 
 Userui::Userui(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Userui)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
     this->setFixedSize(680, 430);
     buildTable();
+    this->setTabOrder(ui->searchBtn, ui->orderBtn);
+    ui->label->setText(QString::fromStdString("username: " + username));
     connect(ui->tableWidget, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(viewRooms(QTableWidgetItem*)));
     connect(ui->orderBtn, SIGNAL(clicked()), this, SLOT(viewOrders()));
     connect(ui->searchBtn, SIGNAL(clicked()), this, SLOT(search()));
+    connect(ui->returnBtn, SIGNAL(clicked()), this, SLOT(returnsg()));
 }
 
 Userui::~Userui()
@@ -88,4 +93,10 @@ void Userui::search(){
     }
     else
         QMessageBox::warning(NULL, "error", "Keyword input error!", QMessageBox::Ok|QMessageBox::Ok, QMessageBox::Ok);
+}
+
+void Userui::returnsg(){
+    this->close();
+    loginui l;
+    l.exec();
 }

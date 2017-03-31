@@ -8,6 +8,7 @@
 #include <QtCore\qfile.h>
 #include "ui_userui.h"
 #include "../code/hoteluser.h"
+#include "../code/chotel.h"
 #include "orderuser.h"
 #include "searchrooms.h"
 
@@ -31,6 +32,7 @@ private slots:
     void viewRooms(QTableWidgetItem*);
     void viewOrders();
     void search();
+    void returnsg();
 };
 
 #endif // USERUI_H

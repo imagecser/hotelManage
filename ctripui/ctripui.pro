@@ -80,7 +80,8 @@ HEADERS  +=
 FORMS    +=
 
 DISTFILES += \
-    img.ico
+    img.ico \
+    question.ico
 
 RESOURCES += \
     img.qrc

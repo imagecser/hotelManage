@@ -23,10 +23,14 @@ public:
 private slots:
     void login();
     void exit();
+    void forgot();
+    void signup();
+    void help();
 
 private:
     Ui::loginui *ui;
     Sign sg;
+    fio f;
 };
 
 #endif // LOGINUI_H

@@ -4,6 +4,7 @@ OrderUser::OrderUser(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OrderUser)
 {
+    this->setWindowFlags(Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     ui->setupUi(this);
     this->setFixedSize(930, 465);
     buildTable();
@@ -53,7 +54,7 @@ void OrderUser::showGrid(){
     table->setHorizontalHeaderLabels(header);
     for(int i = 0, k = 0; i < vorders.size();++i){
         qDebug() << QString::fromStdString(vorders[i].user)  ;
-        if(vorders[i].user == "image"){
+        if(vorders[i].user == username){
             table->setRowCount(table->rowCount() + 1);
             stringstream ss; string s;
             ss << setfill('0') << setw(6) << vorders[i].orderIndex; ss >> s;

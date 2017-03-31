@@ -9,7 +9,7 @@ vector<Hotel> vhotels;
 
 vector<Order> vorders;
 
-vector<Upsw> vpsws;
+vector<Upsw> vaccs;
 
 int itemp;
 int iRow;
