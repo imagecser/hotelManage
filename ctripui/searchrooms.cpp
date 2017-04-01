@@ -74,6 +74,7 @@ void SearchRooms::showData(){
                 Loc *pl = new Loc;
                 pl->i = i; pl->j = j;
                 vsearch.push_back(*pl);
+                //qDebug() << vsearch.size();
                 table->insertRow(table->rowCount());
                 int row = table->rowCount() - 1;
                 table->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(mmap.find(i * 1000 + j)->second->city)));
@@ -105,8 +106,8 @@ bool SearchRooms::algo(int i, int j){
 }
 
 void SearchRooms::orderRoom(QTableWidgetItem *item){
-    uRow = vsearch[item->column()].i;
-    uColumn = vsearch[item->column()].j;
+    uRow = vsearch[item->row()].i;
+    uColumn = vsearch[item->row()].j;
     Ordering od;
     od.exec();
 }

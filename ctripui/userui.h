@@ -11,6 +11,7 @@
 #include "../code/chotel.h"
 #include "orderuser.h"
 #include "searchrooms.h"
+#include "uppwd.h"
 
 namespace Ui {
 class Userui;
@@ -33,6 +34,7 @@ private slots:
     void viewOrders();
     void search();
     void returnsg();
+    void changepwd();
 };
 
 #endif // USERUI_H

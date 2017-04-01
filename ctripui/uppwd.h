@@ -2,6 +2,7 @@
 #define UPPWD_H
 
 #include <QDialog>
+#include "ui_uppwd.h"
 
 namespace Ui {
 class Uppwd;
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::Uppwd *ui;
+private slots:
+    void cancel();
+    void update();
 };
 
 #endif // UPPWD_H

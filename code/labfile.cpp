@@ -175,12 +175,12 @@ fstream & fio::pswinput(){
         getline(ss, pack);
         up->password = pack;
         vaccs.push_back(*up);
-        qDebug() << vaccs.size();
+        //qDebug() << vaccs.size();
         ss.clear();
     }
-    for(int i = 0; i < vaccs.size(); ++i){
-        qDebug() << QString::fromStdString(vaccs[i].username) << QString::fromStdString(vaccs[i].password);
-    }
+    //for(int i = 0; i < vaccs.size(); ++i){
+    //    qDebug() << QString::fromStdString(vaccs[i].username) << QString::fromStdString(vaccs[i].password);
+    //}
     return f;
 }
 

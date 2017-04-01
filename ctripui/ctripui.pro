@@ -40,7 +40,8 @@ SOURCES += main.cpp\
     ordering.cpp \
     orderuser.cpp \
     searchrooms.cpp \
-    uppwd.cpp
+    uppwd.cpp \
+    signup.cpp
 
 HEADERS  += \
     loginui.h \
@@ -58,7 +59,8 @@ HEADERS  += \
     ordering.h \
     orderuser.h \
     searchrooms.h \
-    uppwd.h
+    uppwd.h \
+    signup.h
 
 FORMS    += \
     loginui.ui \
@@ -70,7 +72,8 @@ FORMS    += \
     ordering.ui \
     orderuser.ui \
     searchrooms.ui \
-    uppwd.ui
+    uppwd.ui \
+    signup.ui
 
 RC_FILE = img.rc
 

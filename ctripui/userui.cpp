@@ -16,6 +16,7 @@ Userui::Userui(QWidget *parent) :
     connect(ui->orderBtn, SIGNAL(clicked()), this, SLOT(viewOrders()));
     connect(ui->searchBtn, SIGNAL(clicked()), this, SLOT(search()));
     connect(ui->returnBtn, SIGNAL(clicked()), this, SLOT(returnsg()));
+    connect(ui->label, SIGNAL(clicked()), this, SLOT(changepwd()));
 }
 
 Userui::~Userui()
@@ -99,4 +100,9 @@ void Userui::returnsg(){
     this->close();
     loginui l;
     l.exec();
+}
+
+void Userui::changepwd(){
+    Uppwd up;
+    up.exec();
 }

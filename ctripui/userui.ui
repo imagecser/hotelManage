@@ -89,25 +89,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>390</y>
-     <width>200</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>微软雅黑 Light</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="returnBtn">
    <property name="geometry">
     <rect>
@@ -131,11 +112,24 @@
     <string>Backspace</string>
    </property>
   </widget>
+  <widget class="QCommandLinkButton" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>380</y>
+     <width>210</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>tableWidget</zorder>
   <zorder>layoutWidget</zorder>
-  <zorder>label</zorder>
   <zorder>returnBtn</zorder>
   <zorder>orderBtn</zorder>
+  <zorder>label</zorder>
  </widget>
  <resources/>
  <connections/>
