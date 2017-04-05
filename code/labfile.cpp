@@ -172,8 +172,10 @@ fstream & fio::pswinput(){
         ss << line;
         getline(ss, pack, ',');
         up->username = pack;
-        getline(ss, pack);
+        getline(ss, pack, ',');
         up->password = pack;
+        getline(ss, pack);
+        up->email = pack;
         vaccs.push_back(*up);
         //qDebug() << vaccs.size();
         ss.clear();
@@ -187,6 +189,6 @@ fstream & fio::pswinput(){
 fstream & fio::pswsave(){
     f.open("pwd.txt", ios::out);
     for(int i = 0; i < vaccs.size(); ++i)
-        f << vaccs[i].username << ',' << vaccs[i].password << endl;
+        f << vaccs[i].username << ',' << vaccs[i].password << ',' << vaccs[i].email <<endl;
     return f;
 }

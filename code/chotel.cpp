@@ -17,6 +17,7 @@ int uRow;
 int uColumn;
 string username;
 string password;
+string email;
 map<int, Hotel*> mmap;
 
 

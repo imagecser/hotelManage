@@ -33,6 +33,7 @@ extern int uColumn;
 extern int itemp;
 extern string username;
 extern string password;
+extern string email;
 
 
 struct Hotel {
@@ -66,6 +67,7 @@ struct Order {
 struct Upsw {
 	string username;
 	string password;
+    string email;
 };
 
 /*

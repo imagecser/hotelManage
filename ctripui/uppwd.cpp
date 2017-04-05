@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QMessageBox>
 
+
 Uppwd::Uppwd(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Uppwd)
@@ -27,7 +28,6 @@ void Uppwd::cancel(){
 
 void Uppwd::update(){
     if(ui->newEdit->text().size() > 0)
-        if(ui->emailEdit->text().size() > 0)
             if(QString::fromStdString(password) == ui->oldEdit->text())
                 if(ui->newEdit->text() == ui->firmEdit->text()){
                     password = ui->newEdit->text().toStdString();
@@ -36,9 +36,14 @@ void Uppwd::update(){
                             vaccs[i].password = password;
                             string base("python mail.py ");
                             string mid(" ");
-                            string result(base + ui->emailEdit->text().toStdString() + mid + username + mid + password);
-                            system(result.c_str());
+                            string result(base + email + mid + username + mid + password);
+                            fstream bat("sendmail.bat", ios::out);
+                            bat << result;
+                            bat.close();
+                            system("python trans.py");
+                            system("sendmail.bat");
                             this->close();
+                            f.pswsave();
                             return;
                         }
                 }

@@ -7,6 +7,7 @@
 #include "ui_userui.h"
 #include "../code/signiu.h"
 #include "../code/chotel.h"
+#include "signup.h"
 
 namespace Ui {
 class loginui;
@@ -24,7 +25,7 @@ private slots:
     void login();
     void exit();
     void forgot();
-    void signup();
+    void signuplink();
     void help();
 
 private:

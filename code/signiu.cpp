@@ -15,12 +15,12 @@ bool Sign::isAdmin(){
 }
 
 bool Sign::isUser(){
-    if(username == "image" && password == "image")
-        return true;
     for(int i = 0; i < vaccs.size(); ++i){
         if(QString::fromStdString(username) == QString::fromStdString(vaccs[i].username))
-            if(QString::fromStdString(password) == QString::fromStdString(vaccs[i].password))
+            if(QString::fromStdString(password) == QString::fromStdString(vaccs[i].password)){
+                email = vaccs[i].email;
                 return true;
+            }
     }
     return false;
 }

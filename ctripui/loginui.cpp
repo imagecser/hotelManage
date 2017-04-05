@@ -19,7 +19,7 @@ loginui::loginui(QWidget *parent) :
     connect(ui->loginBtn, SIGNAL(clicked()), this, SLOT(login()));
     connect(ui->exitBtn, SIGNAL(clicked()), this, SLOT(exit()));
     connect(ui->forgotBtn, SIGNAL(clicked()), this, SLOT(forgot()));
-    connect(ui->signupBtn, SIGNAL(clicked()), this, SLOT(signup()));
+    connect(ui->signupBtn, SIGNAL(clicked()), this, SLOT(signuplink()));
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(help()));
 }
 
@@ -47,8 +47,9 @@ void loginui::login(){
             us.exec();
         }
         else
-            QMessageBox::about(NULL, " ", "Incorrect username or password.");
+            QMessageBox::warning(NULL, " ", "Incorrect username or password.", QMessageBox::Ok|QMessageBox::Ok, QMessageBox::Ok);
     }
+    qDebug() << QString::fromStdString(username) << QString::fromStdString(password) << QString::fromStdString(email);
 }
 
 void loginui::exit(){
@@ -59,7 +60,11 @@ void loginui::forgot(){
     QMessageBox::about(NULL, "Forgot password?", QString::fromStdString("密码不知道还玩儿啥？卸载吧！"));
 }
 
-void loginui::signup(){
+void loginui::signuplink(){
+    Signup su;
+    this->close();
+    su.exec();
+    /*
     username = ui->usernameLine->text().toStdString();
     password = ui->passwordLine->text().toStdString();
     if(username.size() == 0 || password.size() == 0)
@@ -80,6 +85,7 @@ void loginui::signup(){
         this->close();
         us.exec();
     }
+    */
 }
 
 
